@@ -19,10 +19,10 @@ class UserFactory extends Factory
 		return [
 			'name' => $this->faker->name(),
 			'family'=>$this->faker->name(),
-			'national_code'=>$this->faker->randomNumber(9),
+			'national_code'=>$this->faker->numberBetween(10),
 			'phone'=>$this->faker->phoneNumber(),
-			'fee'=>$this->faker->numberBetween(10000, 100000),
-			'finish'=>$this->faker->numberBetween(10000, 100000),
+			'fee'=>$this->faker->numberBetween(100000, 1000000),
+			'paid'=>$this->faker->numberBetween(10000, 100000),
 		];
 	}
 }

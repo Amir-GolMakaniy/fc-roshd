@@ -3,30 +3,18 @@
 namespace App\Livewire\Forms;
 
 use App\Models\User;
-use Livewire\Attributes\Validate;
 use Livewire\Form;
 
 class UserForm extends Form
 {
 	public ?User $user;
 
-	#[Validate('required|string')]
 	public $name = null;
-
-	#[Validate('required|string')]
 	public $family = null;
-
-	#[Validate('required|int|integer|unique:users,national_code')]
 	public $national_code = null;
-
-	#[Validate('required|numeric|int|integer|unique:users,phone')]
 	public $phone = null;
-
-	#[Validate('nullable|numeric|int|integer')]
 	public $fee = null;
-
-	#[Validate('required|numeric|int|integer')]
-	public $finish = null;
+	public $paid = null;
 
 	public function set(User $user)
 	{
@@ -36,20 +24,34 @@ class UserForm extends Form
 		$this->national_code = $user->national_code;
 		$this->phone = $user->phone;
 		$this->fee = $user->fee;
-		$this->finish = $user->finish;
+		$this->paid = $user->paid;
 	}
 
 	public function update()
 	{
-		$this->validate();
+		$data = $this->validate([
+			'name' => 'required|string',
+			'family' => 'required|string',
+			'national_code' => 'required|numeric|min:10|unique:users,national_code,' . $this->user->id,
+			'phone' => 'required|numeric|min:8|unique:users,phone,' . $this->user->id,
+			'fee' => 'required|numeric',
+			'paid' => 'required|numeric',
+		]);
 
-		$this->user->updateOrFail($this->all());
+		$this->user->update($data);
 	}
 
 	public function store()
 	{
-		$this->validate();
+		$data = $this->validate([
+			'name' => 'required|string',
+			'family' => 'required|string',
+			'national_code' => 'required|numeric|min:10|unique:users,national_code',
+			'phone' => 'required|numeric|min:8|unique:users,phone',
+			'fee' => 'required|numeric',
+			'paid' => 'required|numeric',
+		]);
 
-		User::query()->createOrFirst($this->all());
+		User::query()->create($data);
 	}
 }

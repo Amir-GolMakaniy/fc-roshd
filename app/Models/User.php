@@ -15,6 +15,6 @@ class User extends Model
 		'national_code',
 		'phone',
 		'fee',
-		'remained',
+		'paid',
 	];
 }

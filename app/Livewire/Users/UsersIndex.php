@@ -10,7 +10,14 @@ class UsersIndex extends Component
 {
 	use WithPagination;
 
-	protected $paginationTheme = 'simple-bootstrap';
+	protected $paginationTheme = 'bootstrap';
+
+
+
+	public function loadData(User $user)
+	{
+
+	}
 
 	public function render()
 	{
