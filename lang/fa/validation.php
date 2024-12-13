@@ -177,6 +177,9 @@ return [
         'terms'                 => 'شرایط',
         'province'              => 'استان',
         'body'                  => 'متن',
-        'national_code'         => 'کد ملی'
+        'national_code'         => 'کد ملی',
+        'fee'         => 'شهریه',
+        'paid'         => 'پرداختی',
+        'cut'         => 'تخفیف',
     ],
 ];

@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer>
+ * @extends Factory<Customer>
  */
 class UserFactory extends Factory
 {
@@ -23,6 +24,8 @@ class UserFactory extends Factory
 			'phone'=>$this->faker->phoneNumber(),
 			'fee'=>$this->faker->numberBetween(100000, 1000000),
 			'paid'=>$this->faker->numberBetween(10000, 100000),
+			'cut'=>$this->faker->numberBetween(10000, 100000),
+			'remained'=>$this->faker->numberBetween(10000, 100000),
 		];
 	}
 }

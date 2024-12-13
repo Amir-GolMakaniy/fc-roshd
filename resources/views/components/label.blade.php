@@ -1,3 +1,3 @@
 @props(['name','value'])
 
-<label class="form-label" for="{{ $name }}">{{ $value }}</label>
+<label for="{{ $name }}" {{ $attributes }}>{{ $value }}</label>

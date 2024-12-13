@@ -16,5 +16,7 @@ class User extends Model
 		'phone',
 		'fee',
 		'paid',
+		'cut',
+		'remained',
 	];
 }

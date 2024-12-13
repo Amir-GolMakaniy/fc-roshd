@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
 			$table->string('name');
 			$table->string('family');
-			$table->bigInteger('national_code')->unique();
-			$table->bigInteger('phone')->unique();
+			$table->string('national_code')->unique();
+			$table->string('phone')->unique();
 			$table->bigInteger('fee');
 			$table->bigInteger('paid');
+			$table->bigInteger('cut');
+			$table->bigInteger('remained');
             $table->timestamps();
         });
 
