@@ -1,9 +1,9 @@
 <div>
-    <x-slot:title>لیست کاربران</x-slot>
+    <x-slot:title>باشگاه رشد</x-slot>
     <style>
         body {
             background: linear-gradient(to right, #74ebd5, #9face6);
-            font-family: 'Thomad', sans-serif;
+            font-family: 'Tahoma', sans-serif;
         }
 
         .table-container {
@@ -24,16 +24,13 @@
             font-weight: bold;
         }
 
-        /* برای ریسپانسیو کردن جدول */
-        @media (max-width: 768px) {
-            .table-container {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .table {
-                min-width: 600px; /* عرض حداقل برای جدول */
-            }
+        .search-input {
+            border-radius: 20px;
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
         }
     </style>
     <div class="container my-5">
@@ -41,6 +38,10 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="text-white">تعداد کاربران: <span class="badge bg-primary">{{ App\Models\User::count() }}</span>
             </h5>
+            <!-- بخش جستجو -->
+            <div class="mb-4 d-flex justify-content-center">
+                <input type="text" wire:model.live="search" class="search-input" placeholder="جستجو">
+            </div>
             {{--<a wire:navigate href="{{ route('users.create') }}" class="btn btn-success">افزودن کاربر جدید</a>--}}
             <button wire:mouseover="load({{ null }})" class="btn btn-success"
                     data-bs-toggle="modal" data-bs-target="#createModal">
