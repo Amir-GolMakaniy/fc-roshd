@@ -32,9 +32,37 @@
             width: 100%;
             max-width: 400px;
         }
+
+        body {
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            font-family: 'Tahoma', sans-serif;
+        }
+
+        /* استایل برای وسط‌چین کردن فقط عکس */
+        .image-wrapper {
+            display: flex;
+            justify-content: center; /* وسط‌چین افقی */
+            align-items: center;    /* وسط‌چین عمودی */
+        }
+
+        .image-wrapper img {
+            max-width: 100px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-wrapper img:hover {
+            transform: scale(1.05); /* بزرگنمایی هنگام هاور */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); /* سایه بیشتر */
+        }
     </style>
     <div class="container my-5">
-        <h2 class="text-center mb-4">لیست کاربران</h2>
+        <div class="image-wrapper">
+            <img src="{{ asset('image/THE ROSHD.png') }}" alt="رشد">
+        </div>
+        <h2 class="text-center mb-4">باشگاه فرهنگی ورزشی رشد شهرستان چناران</h2>
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="text-white">تعداد کاربران: <span class="badge bg-primary">{{ App\Models\User::count() }}</span>
             </h5>
