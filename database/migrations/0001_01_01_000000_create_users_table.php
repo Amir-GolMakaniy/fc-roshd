@@ -17,6 +17,8 @@ return new class extends Migration
 			$table->string('family');
 			$table->string('national_code')->unique();
 			$table->string('phone')->unique();
+			$table->string('insurance');
+			$table->bigInteger('vest');
 			$table->bigInteger('fee');
 			$table->bigInteger('paid');
 			$table->bigInteger('cut');

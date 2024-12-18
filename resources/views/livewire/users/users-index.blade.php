@@ -116,6 +116,22 @@
                             </div>
 
                             <div class="row g-4 mt-3">
+                                <!-- بیمه -->
+                                <div class="col-md-6">
+                                    <x-label name="form.insurance" class="form-label" value="بیمه"/>
+                                    <x-date name="form.insurance" class="date form-control"/>
+                                    <x-error name="form.insurance" class="text-danger"/>
+                                </div>
+
+                                <!-- لباس -->
+                                <div class="col-md-6">
+                                    <x-label name="form.vest" class="form-label" value="لباس"/>
+                                    <x-number name="form.vest" class="form-control"/>
+                                    <x-error name="form.vest" class="text-danger"/>
+                                </div>
+                            </div>
+
+                            <div class="row g-4 mt-3">
                                 <!-- شهریه -->
                                 <div class="col-md-6">
                                     <x-label name="form.fee" class="form-label" value="شهریه"/>

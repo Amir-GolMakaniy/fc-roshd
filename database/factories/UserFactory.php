@@ -22,6 +22,8 @@ class UserFactory extends Factory
 			'family'=>$this->faker->name(),
 			'national_code'=>$this->faker->numberBetween(10),
 			'phone'=>$this->faker->phoneNumber(),
+			'insurance'=>$this->faker->date(),
+			'vest'=>$this->faker->numberBetween(100000, 1000000),
 			'fee'=>$this->faker->numberBetween(100000, 1000000),
 			'paid'=>$this->faker->numberBetween(10000, 100000),
 			'cut'=>$this->faker->numberBetween(10000, 100000),

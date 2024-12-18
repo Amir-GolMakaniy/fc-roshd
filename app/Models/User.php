@@ -14,6 +14,8 @@ class User extends Model
 		'family',
 		'national_code',
 		'phone',
+		'insurance',
+		'vest',
 		'fee',
 		'paid',
 		'cut',

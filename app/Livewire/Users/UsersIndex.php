@@ -42,6 +42,7 @@ class UsersIndex extends Component
 	public function render()
 	{
 		$users = User::query()
+			->orderByDesc('id')
 			->where('name', 'like', '%' . $this->search . '%')
 			->orWhere('family', 'like', '%' . $this->search . '%')
 			->paginate(10);

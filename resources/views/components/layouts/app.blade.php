@@ -6,6 +6,10 @@
 
     <title>{{ $title ?? 'Page Title' }}</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.rtl.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/persian.datepicker.css') }}"/>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/persian.date.js') }}"></script>
+    <script src="{{ asset('js/persian.datepicker.js') }}"></script>
 </head>
 <body>
 {{ $slot }}

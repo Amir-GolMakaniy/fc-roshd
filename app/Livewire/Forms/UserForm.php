@@ -13,6 +13,8 @@ class UserForm extends Form
 	public $family = null;
 	public $national_code = null;
 	public $phone = null;
+	public $insurance = null;
+	public $vest = null;
 	public $fee = null;
 	public $paid = null;
 	public $cut = null;
@@ -24,6 +26,8 @@ class UserForm extends Form
 		$this->family = $user->family;
 		$this->national_code = $user->national_code;
 		$this->phone = $user->phone;
+		$this->insurance = $user->insurance;
+		$this->vest = $user->vest;
 		$this->fee = $user->fee;
 		$this->paid = $user->paid;
 		$this->cut = $user->cut;
@@ -36,9 +40,11 @@ class UserForm extends Form
 			'family' => 'required|string',
 			'national_code' => 'required|numeric|regex:/^\d{10}$/|unique:users,national_code,' . $this->user->id,
 			'phone' => 'required|numeric|regex:/^\d{11}$/|unique:users,phone,' . $this->user->id,
-			'fee' => 'required|numeric',
-			'paid' => 'required|numeric',
-			'cut' => 'nullable|numeric',
+			'insurance' => '',
+			'vest' => 'required',
+			'fee' => 'required|',
+			'paid' => 'required',
+			'cut' => 'nullable',
 		]);
 
 		$this->user->update([
@@ -46,10 +52,12 @@ class UserForm extends Form
 			'family' => $data['family'],
 			'national_code' => $data['national_code'],
 			'phone' => $data['phone'],
-			'fee' => $data['fee'],
-			'paid' => $data['paid'],
-			'cut' => $data['cut'],
-			'remained' => $data['fee'] - $data['paid'] - $data['cut'],
+			'insurance' => $data['insurance'],
+			'vest' => intval(str_replace(',', '', $data['vest'])),
+			'fee' => intval(str_replace(',', '', $data['fee'])),
+			'paid' => intval(str_replace(',', '', $data['paid'])),
+			'cut' => intval(str_replace(',', '', $data['cut'])),
+			'remained' => intval(str_replace(',', '', $data['fee'])) - intval(str_replace(',', '', $data['paid'])) - intval(str_replace(',', '', $data['cut'])),
 		]);
 	}
 
@@ -60,9 +68,11 @@ class UserForm extends Form
 			'family' => 'required|string',
 			'national_code' => 'required|numeric|regex:/^\d{10}$/|unique:users,national_code',
 			'phone' => 'required|numeric|regex:/^\d{11}$/|unique:users,phone',
-			'fee' => 'required|numeric',
-			'paid' => 'required|numeric',
-			'cut' => 'nullable|numeric',
+			'insurance' => '',
+			'vest' => 'required',
+			'fee' => 'required|',
+			'paid' => 'required',
+			'cut' => 'nullable',
 		]);
 
 		User::query()->create([
@@ -70,10 +80,12 @@ class UserForm extends Form
 			'family' => $data['family'],
 			'national_code' => $data['national_code'],
 			'phone' => $data['phone'],
-			'fee' => $data['fee'],
-			'paid' => $data['paid'],
-			'cut' => $data['cut'],
-			'remained' => $data['fee'] - $data['paid'] - $data['cut'],
+			'insurance' => $data['insurance'],
+			'vest' => intval(str_replace(',', '', $data['vest'])),
+			'fee' => intval(str_replace(',', '', $data['fee'])),
+			'paid' => intval(str_replace(',', '', $data['paid'])),
+			'cut' => intval(str_replace(',', '', $data['cut'])),
+			'remained' => intval(str_replace(',', '', $data['fee'])) - intval(str_replace(',', '', $data['paid'])) - intval(str_replace(',', '', $data['cut'])),
 		]);
 	}
 }
