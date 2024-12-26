@@ -70,7 +70,6 @@
             <div class="mb-4 d-flex justify-content-center">
                 <input type="text" wire:model.live="search" class="search-input" placeholder="جستجو">
             </div>
-            {{--<a wire:navigate href="{{ route('users.create') }}" class="btn btn-success">افزودن کاربر جدید</a>--}}
             <button wire:mouseover="load({{ null }})" class="btn btn-success"
                     data-bs-toggle="modal" data-bs-target="#createModal">
                 افزودن کاربر جدید
@@ -119,7 +118,7 @@
                                 <!-- بیمه -->
                                 <div class="col-md-6">
                                     <x-label name="form.insurance" class="form-label" value="بیمه"/>
-                                    <x-date name="form.insurance" class="date form-control"/>
+                                    <x-date-update name="form.insurance" class="date update form-control"/>
                                     <x-error name="form.insurance" class="text-danger"/>
                                 </div>
 
@@ -186,7 +185,6 @@
                         <td>{{ number_format($user->fee) }}</td>
                         <td>{{ number_format($user->remained) }}</td>
                         <td>
-                            {{--<a wire:navigate href="{{ route('users.edit',$user->id) }}" class="btn btn-warning btn-sm">ویرایش</a>--}}
                             <button wire:mouseover="load({{ $user->id }})" class="btn btn-warning btn-sm"
                                     data-bs-toggle="modal" data-bs-target="#editModal">
                                 ویرایش کاربر
@@ -209,8 +207,7 @@
 
                                                 <!-- نام خانوادگی -->
                                                 <div class="col-md-6">
-                                                    <x-label name="form.family" class="form-label"
-                                                             value="نام خانوادگی"/>
+                                                    <x-label name="form.family" class="form-label" value="نام خانوادگی"/>
                                                     <x-text name="form.family" class="form-control"/>
                                                     <x-error name="form.family" class="text-danger"/>
                                                 </div>
@@ -219,17 +216,32 @@
                                             <div class="row g-4 mt-3">
                                                 <!-- کد ملی -->
                                                 <div class="col-md-6">
-                                                    <x-label name="form.national_code" class="form-label"
-                                                             value="کد ملی"/>
-                                                    <x-number name="form.national_code" class="form-control"/>
+                                                    <x-label name="form.national_code" class="form-label" value="کد ملی"/>
+                                                    <x-text name="form.national_code" class="form-control"/>
                                                     <x-error name="form.national_code" class="text-danger"/>
                                                 </div>
 
                                                 <!-- تلفن -->
                                                 <div class="col-md-6">
                                                     <x-label name="form.phone" class="form-label" value="تلفن"/>
-                                                    <x-number name="form.phone" class="form-control"/>
+                                                    <x-text name="form.phone" class="form-control"/>
                                                     <x-error name="form.phone" class="text-danger"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-4 mt-3">
+                                                <!-- بیمه -->
+                                                <div class="col-md-6">
+                                                    <x-label name="form.insurance" class="form-label" value="بیمه"/>
+                                                    <x-date-store name="form.insurance" class="date store form-control"/>
+                                                    <x-error name="form.insurance" class="text-danger"/>
+                                                </div>
+
+                                                <!-- لباس -->
+                                                <div class="col-md-6">
+                                                    <x-label name="form.vest" class="form-label" value="لباس"/>
+                                                    <x-number name="form.vest" class="form-control"/>
+                                                    <x-error name="form.vest" class="text-danger"/>
                                                 </div>
                                             </div>
 
@@ -241,20 +253,20 @@
                                                     <x-error name="form.fee" class="text-danger"/>
                                                 </div>
 
-                                                <!-- پرداخت شده -->
+                                                <!-- پرداختی -->
                                                 <div class="col-md-6">
-                                                    <x-label name="form.paid" class="form-label" value="پرداخت شده"/>
+                                                    <x-label name="form.paid" class="form-label" value="پرداختی"/>
                                                     <x-number name="form.paid" class="form-control"/>
                                                     <x-error name="form.paid" class="text-danger"/>
                                                 </div>
+                                            </div>
 
-                                                <div class="row g-4 mt-3">
-                                                    <!-- تخفیف -->
-                                                    <div class="col-md-12">
-                                                        <x-label name="form.cut" class="form-label" value="تخفیف"/>
-                                                        <x-number name="form.cut" class="form-control"/>
-                                                        <x-error name="form.cut" class="text-danger"/>
-                                                    </div>
+                                            <div class="row g-4 mt-3">
+                                                <!-- تخفیف -->
+                                                <div class="col-md-12">
+                                                    <x-label name="form.cut" class="form-label" value="تخفیف"/>
+                                                    <x-number name="form.cut" class="form-control"/>
+                                                    <x-error name="form.cut" class="text-danger"/>
                                                 </div>
                                             </div>
                                         </div>

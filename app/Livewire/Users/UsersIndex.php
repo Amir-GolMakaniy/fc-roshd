@@ -37,6 +37,8 @@ class UsersIndex extends Component
 	public function delete(User $user)
 	{
 		$user->delete();
+		$this->reset();
+		$this->render();
 	}
 
 	public function render()
