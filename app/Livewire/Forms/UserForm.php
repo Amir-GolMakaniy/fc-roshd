@@ -85,7 +85,10 @@ class UserForm extends Form
 			'fee' => intval(str_replace(',', '', $data['fee'])),
 			'paid' => intval(str_replace(',', '', $data['paid'])),
 			'cut' => intval(str_replace(',', '', $data['cut'])),
-			'remained' => intval(str_replace(',', '', $data['fee'])) - intval(str_replace(',', '', $data['paid'])) - intval(str_replace(',', '', $data['cut'])),
+			'remained' =>
+				intval(str_replace(',', '', $data['fee'])) -
+				intval(str_replace(',', '', $data['paid'])) -
+				intval(str_replace(',', '', $data['cut'])),
 		]);
 	}
 }
