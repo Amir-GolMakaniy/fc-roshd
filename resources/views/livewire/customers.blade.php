@@ -130,7 +130,10 @@
                     <th>نام خانوادگی</th>
                     <th>کد ملی</th>
                     <th>تلفن</th>
-                    <th>تلفن</th>
+                    <th>کفش</th>
+                    @for($month = 1; $month <= 12; $month++)
+                        <th>ماه {{ $month }}</th>
+                    @endfor
                     <th>ویرایش</th>
                 </tr>
                 </thead>
@@ -141,6 +144,14 @@
                         <td>{{ $customer->family }}</td>
                         <td>{{ $customer->national_code }}</td>
                         <td>{{ $customer->phone }}</td>
+                        <td><input type="checkbox" wire:click="toggleShoes({{ $customer->id }})" {{ $customer->shoes ? 'checked' : '' }} name="shoes" id="shoes"></td>
+                        @for($month = 1; $month <= 12; $month++)
+                            <td>
+                                <input type="checkbox"
+                                       wire:click="togglePayment({{ $customer->id }}, {{ $month }})"
+                                       @if($customer->payments->where('month', $month)->where('is_paid', true)->first()) checked @endif>
+                            </td>
+                        @endfor
                         <td>
                             <button wire:mouseover="load({{ $customer->id }})" class="btn btn-warning btn-sm"
                                     data-bs-toggle="modal" data-bs-target="#editModal">

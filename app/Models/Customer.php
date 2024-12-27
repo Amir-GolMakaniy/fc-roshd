@@ -14,5 +14,11 @@ class Customer extends Model
 		'family',
 		'national_code',
 		'phone',
+		'shoes',
 	];
+
+	public function payments()
+	{
+		return $this->hasMany(Payment::class);
+	}
 }

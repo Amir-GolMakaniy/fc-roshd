@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-			$table->string('name');
-			$table->string('family');
-			$table->string('national_code')->unique();
-			$table->string('phone')->unique();
-			$table->boolean('shoes')->default(false);
+			$table->foreignId('customer_id')->constrained()->onDelete('cascade');
+			$table->tinyInteger('month'); // 1 تا 12
+			$table->smallInteger('year'); // سال
+			$table->boolean('is_paid')->default(false);
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('payments');
     }
 };
