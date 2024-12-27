@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Users\UsersIndex;
+use App\Livewire\Customers;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', UsersIndex::class)->name('users.index');
+Route::get('/', Customers::class)->name('home');

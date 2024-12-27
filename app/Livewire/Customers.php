@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Livewire\Users;
+namespace App\Livewire;
 
-use App\Livewire\Forms\UserForm;
-use App\Models\User;
+use App\Livewire\Forms\CustomerForm;
+use App\Models\Customer;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class UsersIndex extends Component
+class Customers extends Component
 {
 	use WithPagination;
 
-	public UserForm $form;
+	public CustomerForm $form;
 	public $search = '';
 
 	protected $paginationTheme = 'bootstrap';
 
-	public function load(User $id)
+	public function load(Customer $id)
 	{
 		$this->form->resetValidation();
 		$this->form->set($id);
@@ -25,30 +25,30 @@ class UsersIndex extends Component
 	public function update()
 	{
 		$this->form->update();
-		$this->redirect(route('users.index'));
+		$this->redirect(route('home'));
 	}
 
 	public function store()
 	{
 		$this->form->store();
-		$this->redirect(route('users.index'));
+		$this->redirect(route('home'));
 	}
 
-	public function delete(User $user)
+	public function delete(Customer $customer)
 	{
-		$user->delete();
+		$customer->delete();
 		$this->reset();
 		$this->render();
 	}
 
 	public function render()
 	{
-		$users = User::query()
+		$customers = Customer::query()
 			->orderByDesc('id')
 			->where('name', 'like', '%' . $this->search . '%')
 			->orWhere('family', 'like', '%' . $this->search . '%')
 			->paginate(10);
 
-		return view('livewire.users.users-index', compact('users'));
+		return view('livewire.customers', compact('customers'));
 	}
 }

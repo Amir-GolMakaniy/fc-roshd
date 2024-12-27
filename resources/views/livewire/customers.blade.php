@@ -42,7 +42,7 @@
         .image-wrapper {
             display: flex;
             justify-content: center; /* وسط‌چین افقی */
-            align-items: center;    /* وسط‌چین عمودی */
+            align-items: center; /* وسط‌چین عمودی */
         }
 
         .image-wrapper img {
@@ -64,7 +64,8 @@
         </div>
         <h2 class="text-center mb-4">باشگاه فرهنگی ورزشی رشد شهرستان چناران</h2>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="text-white">تعداد کاربران: <span class="badge bg-primary">{{ App\Models\User::count() }}</span>
+            <h5 class="text-white">تعداد کاربران: <span
+                        class="badge bg-primary">{{ App\Models\Customer::count() }}</span>
             </h5>
             <!-- بخش جستجو -->
             <div class="mb-4 d-flex justify-content-center">
@@ -113,47 +114,6 @@
                                     <x-error name="form.phone" class="text-danger"/>
                                 </div>
                             </div>
-
-                            <div class="row g-4 mt-3">
-                                <!-- بیمه -->
-                                <div class="col-md-6">
-                                    <x-label name="form.insurance" class="form-label" value="بیمه"/>
-                                    <x-date-update name="form.insurance" class="date update form-control"/>
-                                    <x-error name="form.insurance" class="text-danger"/>
-                                </div>
-
-                                <!-- لباس -->
-                                <div class="col-md-6">
-                                    <x-label name="form.vest" class="form-label" value="لباس"/>
-                                    <x-number name="form.vest" class="form-control"/>
-                                    <x-error name="form.vest" class="text-danger"/>
-                                </div>
-                            </div>
-
-                            <div class="row g-4 mt-3">
-                                <!-- شهریه -->
-                                <div class="col-md-6">
-                                    <x-label name="form.fee" class="form-label" value="شهریه"/>
-                                    <x-number name="form.fee" class="form-control"/>
-                                    <x-error name="form.fee" class="text-danger"/>
-                                </div>
-
-                                <!-- پرداختی -->
-                                <div class="col-md-6">
-                                    <x-label name="form.paid" class="form-label" value="پرداختی"/>
-                                    <x-number name="form.paid" class="form-control"/>
-                                    <x-error name="form.paid" class="text-danger"/>
-                                </div>
-                            </div>
-
-                            <div class="row g-4 mt-3">
-                                <!-- تخفیف -->
-                                <div class="col-md-12">
-                                    <x-label name="form.cut" class="form-label" value="تخفیف"/>
-                                    <x-number name="form.cut" class="form-control"/>
-                                    <x-error name="form.cut" class="text-danger"/>
-                                </div>
-                            </div>
                         </div>
                         <div class="modal-footer">
                             <button wire:click="store" class="btn btn-primary">ذخیره</button>
@@ -170,22 +130,19 @@
                     <th>نام خانوادگی</th>
                     <th>کد ملی</th>
                     <th>تلفن</th>
-                    <th>شهریه</th>
-                    <th>باقی مانده</th>
+                    <th>تلفن</th>
                     <th>ویرایش</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($users as $user)
+                @foreach($customers as $customer)
                     <tr>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->family }}</td>
-                        <td>{{ $user->national_code }}</td>
-                        <td>{{ $user->phone }}</td>
-                        <td>{{ number_format($user->fee) }}</td>
-                        <td>{{ number_format($user->remained) }}</td>
+                        <td>{{ $customer->name }}</td>
+                        <td>{{ $customer->family }}</td>
+                        <td>{{ $customer->national_code }}</td>
+                        <td>{{ $customer->phone }}</td>
                         <td>
-                            <button wire:mouseover="load({{ $user->id }})" class="btn btn-warning btn-sm"
+                            <button wire:mouseover="load({{ $customer->id }})" class="btn btn-warning btn-sm"
                                     data-bs-toggle="modal" data-bs-target="#editModal">
                                 ویرایش کاربر
                             </button>
@@ -207,7 +164,8 @@
 
                                                 <!-- نام خانوادگی -->
                                                 <div class="col-md-6">
-                                                    <x-label name="form.family" class="form-label" value="نام خانوادگی"/>
+                                                    <x-label name="form.family" class="form-label"
+                                                             value="نام خانوادگی"/>
                                                     <x-text name="form.family" class="form-control"/>
                                                     <x-error name="form.family" class="text-danger"/>
                                                 </div>
@@ -216,7 +174,8 @@
                                             <div class="row g-4 mt-3">
                                                 <!-- کد ملی -->
                                                 <div class="col-md-6">
-                                                    <x-label name="form.national_code" class="form-label" value="کد ملی"/>
+                                                    <x-label name="form.national_code" class="form-label"
+                                                             value="کد ملی"/>
                                                     <x-text name="form.national_code" class="form-control"/>
                                                     <x-error name="form.national_code" class="text-danger"/>
                                                 </div>
@@ -228,50 +187,9 @@
                                                     <x-error name="form.phone" class="text-danger"/>
                                                 </div>
                                             </div>
-
-                                            <div class="row g-4 mt-3">
-                                                <!-- بیمه -->
-                                                <div class="col-md-6">
-                                                    <x-label name="form.insurance" class="form-label" value="بیمه"/>
-                                                    <x-date-store name="form.insurance" class="date store form-control"/>
-                                                    <x-error name="form.insurance" class="text-danger"/>
-                                                </div>
-
-                                                <!-- لباس -->
-                                                <div class="col-md-6">
-                                                    <x-label name="form.vest" class="form-label" value="لباس"/>
-                                                    <x-number name="form.vest" class="form-control"/>
-                                                    <x-error name="form.vest" class="text-danger"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="row g-4 mt-3">
-                                                <!-- شهریه -->
-                                                <div class="col-md-6">
-                                                    <x-label name="form.fee" class="form-label" value="شهریه"/>
-                                                    <x-number name="form.fee" class="form-control"/>
-                                                    <x-error name="form.fee" class="text-danger"/>
-                                                </div>
-
-                                                <!-- پرداختی -->
-                                                <div class="col-md-6">
-                                                    <x-label name="form.paid" class="form-label" value="پرداختی"/>
-                                                    <x-number name="form.paid" class="form-control"/>
-                                                    <x-error name="form.paid" class="text-danger"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="row g-4 mt-3">
-                                                <!-- تخفیف -->
-                                                <div class="col-md-12">
-                                                    <x-label name="form.cut" class="form-label" value="تخفیف"/>
-                                                    <x-number name="form.cut" class="form-control"/>
-                                                    <x-error name="form.cut" class="text-danger"/>
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button wire:click="delete({{ $user->id }})"
+                                            <button wire:click="delete({{ $customer->id }})"
                                                     data-bs-dismiss="modal" class="btn btn-danger">
                                                 حذف
                                             </button>
@@ -294,5 +212,5 @@
         </div>
     </div>
 
-    {{ $users->links() }}
+    {{ $customers->links() }}
 </div>
