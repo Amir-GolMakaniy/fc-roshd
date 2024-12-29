@@ -2,5 +2,6 @@
 
 return [
     App\Providers\AppServiceProvider::class,
-	Barryvdh\Debugbar\ServiceProvider::class,
+    App\Providers\VoltServiceProvider::class,
+    Barryvdh\Debugbar\ServiceProvider::class,
 ];
