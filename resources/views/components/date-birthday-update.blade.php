@@ -2,7 +2,7 @@
 
 <script>
     $(document).ready(function () {
-        $(".date").pDatepicker({
+        $(".birthday-update").pDatepicker({
             "inline": false,
             "format": "LL",
             "viewMode": "day",
@@ -97,9 +97,8 @@
             "responsive": true,
 
             "onSelect": function (unixDate) {
-                let update = $(".update").val();
-                console.log(update);
-                @this.set('{{ $name }}', update);
+                let birthday_update = $(".birthday-update").val();
+                @this.set('{{ $name }}', birthday_update);
             }
         });
     });

@@ -17,7 +17,11 @@ return new class extends Migration
 			$table->string('family');
 			$table->string('national_code')->unique();
 			$table->string('phone')->unique();
+			$table->string('birthday');
+			$table->boolean('one_clothes')->default(false);
+			$table->boolean('two_clothes')->default(false);
 			$table->boolean('shoes')->default(false);
+			$table->string('insurance')->nullable();
             $table->timestamps();
         });
     }

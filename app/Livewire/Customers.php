@@ -32,8 +32,28 @@ class Customers extends Component
 	public function toggleShoes(Customer $customer)
 	{
 		$customer->update([
-			'shoes'=>!$customer->shoes
+			'shoes' => !$customer->shoes
 		]);
+	}
+
+	public function toggleOne_clothes(Customer $customer)
+	{
+		$customer->update([
+			'one_clothes' => !$customer->one_clothes
+		]);
+	}
+
+	public function toggleTwo_clothes(Customer $customer)
+	{
+		$customer->update([
+			'two_clothes' => !$customer->two_clothes
+		]);
+	}
+
+	public function update()
+	{
+		$this->form->update();
+		$this->redirect(route('home'));
 	}
 
 	public function togglePayment($customer, $month)
@@ -49,12 +69,6 @@ class Customers extends Component
 
 		// ذخیره تغییرات
 		$payment->save();
-	}
-
-	public function update()
-	{
-		$this->form->update();
-		$this->redirect(route('home'));
 	}
 
 	public function delete(Customer $customer)

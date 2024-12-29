@@ -114,6 +114,24 @@
                                     <x-error name="form.phone" class="text-danger"/>
                                 </div>
                             </div>
+
+                            <div class="row g-4 mt-3">
+                                <!-- تاریخ تولد -->
+                                <div class="col-md-6">
+                                    <x-label name="form.birthday" class="form-label" value="تاریخ تولد"/>
+                                    <x-date-birthday-store name="form.birthday"
+                                                           class="form-control birthday-store"/>
+                                    <x-error name="form.birthday" class="text-danger"/>
+                                </div>
+
+                                <!-- تاریخ بیمه -->
+                                <div class="col-md-6">
+                                    <x-label name="form.insurance" class="form-label" value="تاریخ بیمه"/>
+                                    <x-date-insurance-store name="form.insurance"
+                                                            class="form-control insurance-store"/>
+                                    <x-error name="form.insurance" class="text-danger"/>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button wire:click="store" class="btn btn-primary">ذخیره</button>
@@ -128,9 +146,10 @@
                 <tr>
                     <th>نام</th>
                     <th>نام خانوادگی</th>
-                    <th>کد ملی</th>
-                    <th>تلفن</th>
+                    <th>لباس یک</th>
+                    <th>لباس دو</th>
                     <th>کفش</th>
+                    <th>بیمه</th>
                     @for($month = 1; $month <= 12; $month++)
                         <th>ماه {{ $month }}</th>
                     @endfor
@@ -142,9 +161,19 @@
                     <tr>
                         <td>{{ $customer->name }}</td>
                         <td>{{ $customer->family }}</td>
-                        <td>{{ $customer->national_code }}</td>
-                        <td>{{ $customer->phone }}</td>
-                        <td><input type="checkbox" wire:click="toggleShoes({{ $customer->id }})" {{ $customer->shoes ? 'checked' : '' }} name="shoes" id="shoes"></td>
+                        <td>
+                            <input type="checkbox" wire:click="toggleOne_clothes({{ $customer->id }})"
+                                   {{ $customer->one_clothes ? 'checked' : '' }} name="one_clothes" id="one_clothes">
+                        </td>
+                        <td>
+                            <input type="checkbox" wire:click="toggleTwo_clothes({{ $customer->id }})"
+                                   {{ $customer->two_clothes ? 'checked' : '' }} name="two_clothes" id="two_clothes">
+                        </td>
+                        <td>
+                            <input type="checkbox" wire:click="toggleShoes({{ $customer->id }})"
+                                   {{ $customer->shoes ? 'checked' : '' }} name="shoes" id="shoes">
+                        </td>
+                        <td>{{ $customer->insurance }}</td>
                         @for($month = 1; $month <= 12; $month++)
                             <td>
                                 <input type="checkbox"
@@ -196,6 +225,26 @@
                                                     <x-label name="form.phone" class="form-label" value="تلفن"/>
                                                     <x-text name="form.phone" class="form-control"/>
                                                     <x-error name="form.phone" class="text-danger"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-4 mt-3">
+                                                <!-- تاریخ تولد -->
+                                                <div class="col-md-6">
+                                                    <x-label name="form.birthday" class="form-label"
+                                                             value="تاریخ تولد"/>
+                                                    <x-date-birthday-update name="form.birthday"
+                                                                            class="form-control birthday-update"/>
+                                                    <x-error name="form.birthday" class="text-danger"/>
+                                                </div>
+
+                                                <!-- تاریخ بیمه -->
+                                                <div class="col-md-6">
+                                                    <x-label name="form.insurance" class="form-label"
+                                                             value="تاریخ بیمه"/>
+                                                    <x-date-insurance-update name="form.insurance"
+                                                                             class="form-control insurance-update"/>
+                                                    <x-error name="form.insurance" class="text-danger"/>
                                                 </div>
                                             </div>
                                         </div>

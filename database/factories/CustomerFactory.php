@@ -22,6 +22,7 @@ class CustomerFactory extends Factory
 			'family' => fake()->lastName(),
 			'national_code' => fake()->unique()->numberBetween(1111111111, 9999999999),
 			'phone' => fake()->phoneNumber(),
+			'birthday' => fake()->date(),
 		];
 	}
 }

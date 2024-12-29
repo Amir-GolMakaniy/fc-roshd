@@ -2,7 +2,7 @@
 
 <script>
     $(document).ready(function () {
-        $(".date").pDatepicker({
+        $(".insurance-update").pDatepicker({
             "inline": false,
             "format": "LL",
             "viewMode": "day",
@@ -97,9 +97,8 @@
             "responsive": true,
 
             "onSelect": function (unixDate) {
-                let store = $(".store").val();
-                console.log(store);
-                @this.set('{{ $name }}', store);
+                let insurance_update = $(".insurance-update").val();
+                @this.set('{{ $name }}', insurance_update);
             }
         });
     });

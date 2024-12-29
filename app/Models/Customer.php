@@ -14,7 +14,11 @@ class Customer extends Model
 		'family',
 		'national_code',
 		'phone',
+		'birthday',
+		'one_clothes',
+		'two_clothes',
 		'shoes',
+		'insurance',
 	];
 
 	public function payments()
