@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
 			$table->foreignId('customer_id')->constrained()->onDelete('cascade');
-			$table->tinyInteger('month'); // 1 تا 12
-			$table->smallInteger('year'); // سال
-			$table->boolean('is_paid')->default(false);
+			$table->string('paid');
+			$table->tinyInteger('month');
+			$table->smallInteger('year');
             $table->timestamps();
         });
     }

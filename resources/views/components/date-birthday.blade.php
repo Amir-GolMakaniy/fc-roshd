@@ -2,11 +2,11 @@
 
 <script>
     $(document).ready(function () {
-        $(".birthday-update").pDatepicker({
+        $(".birthday").pDatepicker({
             "inline": false,
             "format": "LL",
             "viewMode": "day",
-            "initialValue": true,
+            "initialValue": false,
             "minDate": 1,
             "maxDate": 9999999999999,
             "autoClose": false,
@@ -97,8 +97,9 @@
             "responsive": true,
 
             "onSelect": function (unixDate) {
-                let birthday_update = $(".birthday-update").val();
-                @this.set('{{ $name }}', birthday_update);
+                let birthday = $(".birthday").val();
+                console.log(birthday);
+                @this.set('{{ $name }}', birthday);
             }
         });
     });

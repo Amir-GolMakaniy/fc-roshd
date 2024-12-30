@@ -1,0 +1,157 @@
+/* استایل عمومی */
+body {
+    background: linear-gradient(to right, #74ebd5, #9face6);
+    font-family: 'Tahoma', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h2, h5 {
+    color: #444;
+    font-weight: bold;
+}
+
+.container {
+    margin: auto;
+    max-width: 1100px;
+    padding: 15px;
+}
+
+/* استایل تصویر لوگو */
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.image-wrapper img {
+    max-width: 80px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.image-wrapper img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* استایل دکمه‌ها */
+.btn {
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 8px 15px;
+    font-size: 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.03);
+}
+
+/* استایل جستجو */
+.search-input {
+    border-radius: 15px;
+    padding: 8px 15px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    outline: none;
+}
+
+/* استایل جدول */
+.table-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    overflow-x: auto;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    text-align: center;
+}
+
+.table-container th, .table-container td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.table-container th {
+    background-color: #343a40;
+    color: #fff;
+    font-weight: bold;
+}
+
+.table-container td {
+    background-color: #f9f9f9;
+}
+
+.table-container td:hover {
+    background-color: #f1f1f1;
+}
+
+.table-container tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* استایل برای ریسپانسیو کردن جدول */
+@media (max-width: 768px) {
+    .table-container table {
+        display: block;
+    }
+
+    .table-container thead {
+        display: none;
+    }
+
+    .table-container tbody tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .table-container tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-container tbody td:last-child {
+        border-bottom: none;
+    }
+
+    .table-container tbody td[data-label]:before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #555;
+        margin-right: 8px;
+    }
+}
+
+/* استایل برای نشان‌های تعداد کاربران */
+.badge {
+    font-size: 12px;
+    padding: 3px 8px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+}

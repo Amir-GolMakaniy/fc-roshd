@@ -10,7 +10,7 @@ class Payment extends Model
 		'customer_id',
 		'month',
 		'year',
-		'is_paid',
+		'paid',
 	];
 
 	public function customer()

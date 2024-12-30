@@ -2,11 +2,11 @@
 
 <script>
     $(document).ready(function () {
-        $(".insurance-update").pDatepicker({
+        $(".insurance").pDatepicker({
             "inline": false,
             "format": "LL",
             "viewMode": "day",
-            "initialValue": true,
+            "initialValue": false,
             "minDate": 1,
             "maxDate": 9999999999999,
             "autoClose": false,
@@ -97,8 +97,9 @@
             "responsive": true,
 
             "onSelect": function (unixDate) {
-                let insurance_update = $(".insurance-update").val();
-                @this.set('{{ $name }}', insurance_update);
+                let insurance = $(".insurance").val();
+                console.log(insurance);
+                @this.set('{{ $name }}', insurance);
             }
         });
     });
