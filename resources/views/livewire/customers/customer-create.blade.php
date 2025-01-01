@@ -8,17 +8,24 @@
                 <!-- اطلاعات اصلی -->
                 <div class="row g-3">
                     <!-- نام -->
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <x-label name="form.name" value="نام" class="form-label"/>
                         <x-text name="form.name" class="form-control"/>
                         <x-error name="form.name" class="text-danger"/>
                     </div>
 
                     <!-- نام خانوادگی -->
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <x-label name="form.family" value="نام خانوادگی" class="form-label"/>
                         <x-text name="form.family" class="form-control"/>
                         <x-error name="form.family" class="text-danger"/>
+                    </div>
+
+                    <!-- نام پدر -->
+                    <div class="col-md-4">
+                        <x-label name="form.father_name" value="نام پدر" class="form-label"/>
+                        <x-text name="form.father_name" class="form-control"/>
+                        <x-error name="form.father_name" class="text-danger"/>
                     </div>
                 </div>
 

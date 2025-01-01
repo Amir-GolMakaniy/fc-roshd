@@ -184,5 +184,6 @@ return [
         'insurance'         => 'بیمه',
         'vest'         => 'لباس',
         'birthday'         => 'تاریخ تولد',
+        'father_name'         => 'نام پدر',
     ],
 ];

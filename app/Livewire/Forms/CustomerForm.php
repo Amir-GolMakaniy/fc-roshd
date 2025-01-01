@@ -11,6 +11,7 @@ class CustomerForm extends Form
 
 	public $name = null;
 	public $family = null;
+	public $father_name = null;
 	public $national_code = null;
 	public $phone = null;
 	public $birthday = null;
@@ -30,6 +31,7 @@ class CustomerForm extends Form
 		$this->customer = $customer;
 		$this->name = $customer->name;
 		$this->family = $customer->family;
+		$this->father_name = $customer->father_name;
 		$this->national_code = $customer->national_code;
 		$this->phone = $customer->phone;
 		$this->birthday = $customer->birthday;
@@ -46,6 +48,7 @@ class CustomerForm extends Form
 		$data = $this->validate([
 			'name' => 'required|string',
 			'family' => 'required|string',
+			'father_name' => 'required|string',
 			'national_code' => 'required|numeric|regex:/^\d{10}$/|unique:customers,national_code,' . $this->customer->id,
 			'phone' => 'required|numeric|regex:/^\d{11}$/',
 			'birthday' => 'required|string',
@@ -74,6 +77,7 @@ class CustomerForm extends Form
 		$data = $this->validate([
 			'name' => 'required|string',
 			'family' => 'required|string',
+			'father_name' => 'required|string',
 			'national_code' => 'required|numeric|regex:/^\d{10}$/|unique:customers,national_code',
 			'phone' => 'required|numeric|regex:/^\d{11}$/',
 			'birthday' => 'required|string',
