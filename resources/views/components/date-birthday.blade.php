@@ -94,7 +94,7 @@
                 "enabled": true,
                 "titleFormat": "YYYY"
             },
-            "responsive": true,
+            "responsive": false,
 
             "onSelect": function (unixDate) {
                 let birthday = $(".birthday").val();
