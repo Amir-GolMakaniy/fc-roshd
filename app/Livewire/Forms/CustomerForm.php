@@ -92,7 +92,7 @@ class CustomerForm extends Form
 			}
 
 			// ذخیره عکس جدید
-			$data['image'] = $this->image->store('images/', 'public');
+			$data['image'] = $this->image->store('', 'public');
 		}
 
 		// ایجاد یا بروزرسانی مشتری

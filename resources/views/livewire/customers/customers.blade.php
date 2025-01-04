@@ -3,7 +3,7 @@
     <div class="container my-5">
         <!-- تصویر لوگو -->
         <div class="image-wrapper text-center mb-4">
-            <img src="{{ asset('storage/images/THE-ROSHD.png') }}" alt="رشد" class="img-fluid"
+            <img src="{{ asset('images/THE-ROSHD.png') }}" alt="رشد" class="img-fluid"
                  style="max-height: 120px;">
         </div>
 
@@ -46,8 +46,7 @@
                 @foreach($customers as $customer)
                     <tr>
                         <td data-label="عکس">
-                            <img src="{{ Illuminate\Support\Facades\Storage::url($customer->image) }}"
-                                 alt="{{ $customer->name }}" style="width: 100px; height: auto;">
+                            <img src="{{ asset('images/'.$customer->image) }}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
                         </td>
                         <td data-label="نام">{{ $customer->name }}</td>
                         <td data-label="نام خانوادگی">{{ $customer->family }}</td>
