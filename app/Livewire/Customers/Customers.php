@@ -3,6 +3,7 @@
 namespace App\Livewire\Customers;
 
 use App\Models\Customer;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,10 +17,19 @@ class Customers extends Component
 
 	public function delete(Customer $customer)
 	{
+		// حذف عکس مشتری از دیسک اگر وجود داشته باشد
+		if ($customer->image) {
+			Storage::disk('public')->delete($customer->image);
+		}
+
+		// حذف مشتری
 		$customer->delete();
+
+		// بازنشانی وضعیت و رندر مجدد
 		$this->reset();
 		$this->render();
 	}
+
 
 	public function render()
 	{

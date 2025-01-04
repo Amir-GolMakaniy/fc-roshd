@@ -3,22 +3,51 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Customer;
+use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Validate;
 use Livewire\Form;
+use Livewire\WithFileUploads;
 
 class CustomerForm extends Form
 {
+	use WithFileUploads;
+
 	public ?Customer $customer;
 
+	#[Validate('nullable|image')]
+	public $image = null;
+
+	#[Validate('required|string')]
 	public $name = null;
+
+	#[Validate('required|string')]
 	public $family = null;
+
+	#[Validate('nullable|string')]
 	public $father_name = null;
+
+	#[Validate('nullable|numeric|regex:/^\d{10}$/|unique:customers')]
 	public $national_code = null;
+
+	#[Validate('nullable|numeric|regex:/^\d{11}$/')]
 	public $phone = null;
+
+	#[Validate('nullable|string')]
 	public $birthday = null;
+
+	#[Validate('nullable|string')]
 	public $one_clothes = null;
+
+	#[Validate('nullable|string')]
 	public $two_clothes = null;
+
+	#[Validate('nullable|string')]
 	public $shoes = null;
+
+	#[Validate('nullable|string')]
 	public $insurance = null;
+
+	#[Validate('nullable')]
 	public $months = [];
 
 	public function mount()
@@ -29,74 +58,56 @@ class CustomerForm extends Form
 	public function set(Customer $customer)
 	{
 		$this->customer = $customer;
-		$this->name = $customer->name;
-		$this->family = $customer->family;
-		$this->father_name = $customer->father_name;
-		$this->national_code = $customer->national_code;
-		$this->phone = $customer->phone;
-		$this->birthday = $customer->birthday;
-		$this->one_clothes = $customer->one_clothes;
-		$this->two_clothes = $customer->two_clothes;
-		$this->shoes = $customer->shoes;
-		$this->insurance = $customer->insurance;
+
+		$this->fill($customer->only([
+			'image',
+			'name',
+			'family',
+			'father_name',
+			'national_code',
+			'phone',
+			'birthday',
+			'one_clothes',
+			'two_clothes',
+			'shoes',
+			'insurance',
+		]));
+
 		$payments = $customer->payments->pluck('paid', 'month')->toArray();
 		$this->months = array_replace(array_fill(1, 12, null), $payments);
 	}
 
-	public function update()
+	public function save()
 	{
-		$data = $this->validate([
-			'name' => 'required|string',
-			'family' => 'required|string',
-			'father_name' => 'required|string',
-			'national_code' => 'required|numeric|regex:/^\d{10}$/|unique:customers,national_code,' . $this->customer->id,
-			'phone' => 'required|numeric|regex:/^\d{11}$/',
-			'birthday' => 'required|string',
-			'one_clothes' => 'nullable|string',
-			'two_clothes' => 'nullable|string',
-			'shoes' => 'nullable|string',
-			'insurance' => 'nullable|string',
-			'months' => 'nullable',
-		]);
+		$data = $this->validate();
 
-		$this->customer->update($data);
+		// چک کردن اگر عکسی باشد
+		if ($this->image) {
+			// گرفتن مشتری بر اساس کد ملی
+			$customer = Customer::where('national_code', $data['national_code'])->first();
 
-		foreach ($this->months as $month => $amount) {
-			if ($amount != null) {
-				$this->customer->payments()->create([
-					'paid' => $amount,
-					'month' => $month,
-					'year' => now()->year
-				]);
+			// حذف عکس قبلی اگر وجود داشته باشد
+			if ($customer && $customer->image) {
+				Storage::disk('public')->delete($customer->image);
 			}
+
+			// ذخیره عکس جدید
+			$data['image'] = $this->image->store('images/', 'public');
 		}
-	}
 
-	public function store()
-	{
-		$data = $this->validate([
-			'name' => 'required|string',
-			'family' => 'required|string',
-			'father_name' => 'required|string',
-			'national_code' => 'required|numeric|regex:/^\d{10}$/|unique:customers,national_code',
-			'phone' => 'required|numeric|regex:/^\d{11}$/',
-			'birthday' => 'required|string',
-			'one_clothes' => 'nullable|string',
-			'two_clothes' => 'nullable|string',
-			'shoes' => 'nullable|string',
-			'insurance' => 'nullable|string',
-			'months' => 'nullable',
-		]);
+		// ایجاد یا بروزرسانی مشتری
+		$customer = Customer::updateOrCreate(
+			['national_code' => $data['national_code']],
+			$data
+		);
 
-		$customer = Customer::create($data);
-
+		// آپدیت یا ایجاد پرداخت‌ها
 		foreach ($this->months as $month => $amount) {
 			if ($amount !== null) {
-				$customer->payments()->create([
-					'paid' => $amount,
-					'month' => $month,
-					'year' => now()->year,
-				]);
+				$customer->payments()->updateOrCreate(
+					['month' => $month, 'year' => now()->year],
+					['paid' => $amount]
+				);
 			}
 		}
 	}

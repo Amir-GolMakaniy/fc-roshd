@@ -4,14 +4,17 @@ namespace App\Livewire\Customers;
 
 use App\Livewire\Forms\CustomerForm;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CustomerCreate extends Component
 {
+	use WithFileUploads;
+
 	public CustomerForm $form;
 
-	public function store()
+	public function save()
 	{
-		$this->form->store();
+		$this->form->save();
 		$this->redirect(route('home'));
 	}
 

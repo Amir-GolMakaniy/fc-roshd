@@ -5,9 +5,12 @@ namespace App\Livewire\Customers;
 use App\Livewire\Forms\CustomerForm;
 use App\Models\Customer;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CustomerEdit extends Component
 {
+	use WithFileUploads;
+
 	public CustomerForm $form;
 
 	public function mount(Customer $customer)
@@ -15,9 +18,9 @@ class CustomerEdit extends Component
 		$this->form->set($customer);
 	}
 
-	public function update()
+	public function save()
 	{
-		$this->form->update();
+		$this->form->save();
 		$this->redirect(route('home'));
 	}
 

@@ -4,7 +4,7 @@
     <div class="container my-3">
         <!-- فرم -->
         <div class="card shadow-sm p-3">
-            <form>
+            <form wire:submit="save">
                 <!-- اطلاعات اصلی -->
                 <div class="row g-3">
                     <!-- نام -->
@@ -26,6 +26,15 @@
                         <x-label name="form.father_name" value="نام پدر" class="form-label"/>
                         <x-text name="form.father_name" class="form-control"/>
                         <x-error name="form.father_name" class="text-danger"/>
+                    </div>
+                </div>
+
+                <!-- آپلود عکس -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-12">
+                        <x-label name="form.image" value="آپلود عکس" class="form-label"/>
+                        <x-file name="form.image" class="form-control"/>
+                        <x-error name="form.image" class="text-danger"/>
                     </div>
                 </div>
 
@@ -103,7 +112,7 @@
 
                 <!-- دکمه ثبت -->
                 <div class="text-center mt-4">
-                    <button type="button" wire:click="update" class="btn btn-success w-100">
+                    <button type="submit" class="btn btn-success w-100">
                         ویرایش کاربر
                     </button>
                 </div>
