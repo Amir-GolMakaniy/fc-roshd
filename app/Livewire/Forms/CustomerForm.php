@@ -14,6 +14,9 @@ class CustomerForm extends Form
 
 	public ?Customer $customer;
 
+	#[Validate('nullable')]
+	public $id = null;
+
 	#[Validate('nullable|image')]
 	public $image = null;
 
@@ -60,6 +63,7 @@ class CustomerForm extends Form
 		$this->customer = $customer;
 
 		$this->fill($customer->only([
+			'id',
 			'image',
 			'name',
 			'family',
@@ -84,7 +88,7 @@ class CustomerForm extends Form
 		// چک کردن اگر عکسی باشد
 		if ($this->image) {
 			// گرفتن مشتری بر اساس کد ملی
-			$customer = Customer::where('national_code', $data['national_code'])->first();
+			$customer = Customer::where('id', $data['id'])->first();
 
 			// حذف عکس قبلی اگر وجود داشته باشد
 			if ($customer && $customer->image) {
@@ -97,7 +101,7 @@ class CustomerForm extends Form
 
 		// ایجاد یا بروزرسانی مشتری
 		$customer = Customer::updateOrCreate(
-			['national_code' => $data['national_code']],
+			['id' => $data['id']],
 			$data
 		);
 
