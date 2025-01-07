@@ -17,7 +17,7 @@ class CustomerForm extends Form
 	#[Validate('nullable')]
 	public $id = null;
 
-	#[Validate('nullable|image')]
+	#[Validate('nullable')]
 	public $image = null;
 
 	#[Validate('required|string')]
@@ -29,7 +29,7 @@ class CustomerForm extends Form
 	#[Validate('nullable|string')]
 	public $father_name = null;
 
-	#[Validate('nullable|numeric|regex:/^\d{10}$/|unique:customers')]
+	#[Validate('nullable|numeric|regex:/^\d{10}$/')]
 	public $national_code = null;
 
 	#[Validate('nullable|numeric|regex:/^\d{11}$/')]
@@ -85,27 +85,21 @@ class CustomerForm extends Form
 	{
 		$data = $this->validate();
 
-		// چک کردن اگر عکسی باشد
-		if ($this->image) {
-			// گرفتن مشتری بر اساس کد ملی
+		if ($this->image != $this->customer->image) {
 			$customer = Customer::where('id', $data['id'])->first();
 
-			// حذف عکس قبلی اگر وجود داشته باشد
 			if ($customer && $customer->image) {
 				Storage::disk('public')->delete($customer->image);
 			}
 
-			// ذخیره عکس جدید
 			$data['image'] = $this->image->store('', 'public');
 		}
 
-		// ایجاد یا بروزرسانی مشتری
 		$customer = Customer::updateOrCreate(
 			['id' => $data['id']],
 			$data
 		);
 
-		// آپدیت یا ایجاد پرداخت‌ها
 		foreach ($this->months as $month => $amount) {
 			if ($amount !== null) {
 				$customer->payments()->updateOrCreate(
