@@ -29,6 +29,7 @@
                 <thead class="table-dark">
                 <tr>
                     <th>عکس</th>
+                    <th>عکس قرار داد</th>
                     <th>نام</th>
                     <th>نام خانوادگی</th>
                     <th>لباس یک</th>
@@ -47,6 +48,9 @@
                     <tr>
                         <td data-label="عکس">
                             <img src="{{ asset('images/'.$customer->image) }}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
+                        </td>
+                        <td data-label="عکس">
+                            <img src="{{ asset('images/'.$customer->placed) }}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
                         </td>
                         <td data-label="نام">{{ $customer->name }}</td>
                         <td data-label="نام خانوادگی">{{ $customer->family }}</td>

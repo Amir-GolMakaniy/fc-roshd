@@ -30,10 +30,16 @@
 
                 <!-- آپلود عکس -->
                 <div class="row g-3 mt-2">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <x-label name="form.image" value="آپلود عکس" class="form-label"/>
                         <x-file name="form.image" class="form-control"/>
                         <x-error name="form.image" class="text-danger"/>
+                    </div>
+
+                    <div class="col-md-6">
+                        <x-label name="form.placed" value="آپلود عکس قرار داد" class="form-label"/>
+                        <x-file name="form.placed" class="form-control"/>
+                        <x-error name="form.placed" class="text-danger"/>
                     </div>
                 </div>
 

@@ -44,6 +44,21 @@
                     </div>
                 </div>
 
+                <!-- آپلود عکس -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-10">
+                        <x-label name="form.placed" value="آپلود عکس قرار داد" class="form-label"/>
+                        <x-file name="form.placed" class="form-control"/>
+                        <x-error name="form.placed" class="text-danger"/>
+                    </div>
+
+                    <div class="col-md-2">
+                        <!-- حذف عکس -->
+                        <input type="checkbox" class="form-check-input mt-md-5" wire:model="form.delete_placed">
+                        <x-label name="form.delete_placed" value="حذف تصویر" class="form-label mt-md-5"/>
+                    </div>
+                </div>
+
                 <div class="row g-3 mt-2">
                     <!-- کد ملی -->
                     <div class="col-md-6">

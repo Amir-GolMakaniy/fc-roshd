@@ -14,12 +14,6 @@ class CustomerForm extends Form
 
 	public ?Customer $customer;
 
-	#[Validate('nullable')]
-	public $image = null;
-
-	#[Validate('nullable')]
-	public $delete_image = false;
-
 	#[Validate('required')]
 	public $name = null;
 
@@ -51,6 +45,18 @@ class CustomerForm extends Form
 	public $insurance = null;
 
 	#[Validate('nullable')]
+	public $image = null;
+
+	#[Validate('nullable')]
+	public $delete_image = false;
+
+	#[Validate('nullable')]
+	public $placed = null;
+
+	#[Validate('nullable')]
+	public $delete_placed = false;
+
+	#[Validate('nullable')]
 	public $months = [];
 
 	public function mount()
@@ -64,6 +70,7 @@ class CustomerForm extends Form
 
 		$this->fill($customer->only([
 			'image',
+			'placed',
 			'name',
 			'family',
 			'father_name',
@@ -83,7 +90,20 @@ class CustomerForm extends Form
 	public function update()
 	{
 		$data = $this->validate();
-		$data += $this->validate(['national_code' => 'nullable|unique:customers,national_code,' . $this->customer->id,]);
+
+		if ($this->delete_placed) {
+			if ($this->customer->placed) {
+				Storage::disk('public')->delete($this->customer->placed);
+			}
+			$data['placed'] = null;
+		}
+
+		if ($this->placed != $this->customer->placed && !$this->delete_placed) {
+			if ($this->customer->placed) {
+				Storage::disk('public')->delete($this->customer->placed);
+			}
+			$data['placed'] = $this->placed->store('', 'public');
+		}
 
 		if ($this->delete_image) {
 			if ($this->customer->image) {
@@ -114,7 +134,10 @@ class CustomerForm extends Form
 	public function store()
 	{
 		$data = $this->validate();
-		$data += $this->validate(['national_code' => 'nullable|unique:customers,national_code']);
+
+		if ($this->placed) {
+			$data['placed'] = $this->placed->store('', 'public');
+		}
 
 		if ($this->image) {
 			$data['image'] = $this->image->store('', 'public');

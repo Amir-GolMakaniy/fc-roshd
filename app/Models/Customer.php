@@ -10,7 +10,6 @@ class Customer extends Model
 	use HasFactory;
 
 	protected $fillable = [
-		'image',
 		'name',
 		'family',
 		'father_name',
@@ -21,6 +20,8 @@ class Customer extends Model
 		'two_clothes',
 		'shoes',
 		'insurance',
+		'image',
+		'placed',
 	];
 
 	public function payments()
