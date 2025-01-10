@@ -14,7 +14,7 @@ class CustomerCreate extends Component
 
 	public function save()
 	{
-		$this->form->save();
+		$this->form->store();
 		$this->redirect(route('home'));
 	}
 

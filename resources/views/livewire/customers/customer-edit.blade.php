@@ -31,10 +31,16 @@
 
                 <!-- آپلود عکس -->
                 <div class="row g-3 mt-2">
-                    <div class="col-md-12">
+                    <div class="col-md-10">
                         <x-label name="form.image" value="آپلود عکس" class="form-label"/>
                         <x-file name="form.image" class="form-control"/>
                         <x-error name="form.image" class="text-danger"/>
+                    </div>
+
+                    <div class="col-md-2">
+                        <!-- حذف عکس -->
+                        <input type="checkbox" class="form-check-input mt-md-5" wire:model="form.delete_image">
+                        <x-label name="form.delete_image" value="حذف تصویر" class="form-label mt-md-5"/>
                     </div>
                 </div>
 

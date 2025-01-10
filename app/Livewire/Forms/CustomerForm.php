@@ -15,39 +15,39 @@ class CustomerForm extends Form
 	public ?Customer $customer;
 
 	#[Validate('nullable')]
-	public $id = null;
-
-	#[Validate('nullable')]
 	public $image = null;
 
-	#[Validate('required|string')]
+	#[Validate('nullable')]
+	public $delete_image = false;
+
+	#[Validate('required')]
 	public $name = null;
 
-	#[Validate('required|string')]
+	#[Validate('required')]
 	public $family = null;
 
-	#[Validate('nullable|string')]
+	#[Validate('nullable')]
 	public $father_name = null;
 
-	#[Validate('nullable|numeric|regex:/^\d{10}$/')]
+	#[Validate('nullable|regex:/^\d{10}$/')]
 	public $national_code = null;
 
-	#[Validate('nullable|numeric|regex:/^\d{11}$/')]
+	#[Validate('nullable|regex:/^\d{11}$/')]
 	public $phone = null;
 
-	#[Validate('nullable|string')]
+	#[Validate('nullable')]
 	public $birthday = null;
 
-	#[Validate('nullable|string')]
+	#[Validate('nullable')]
 	public $one_clothes = null;
 
-	#[Validate('nullable|string')]
+	#[Validate('nullable')]
 	public $two_clothes = null;
 
-	#[Validate('nullable|string')]
+	#[Validate('nullable')]
 	public $shoes = null;
 
-	#[Validate('nullable|string')]
+	#[Validate('nullable')]
 	public $insurance = null;
 
 	#[Validate('nullable')]
@@ -63,7 +63,6 @@ class CustomerForm extends Form
 		$this->customer = $customer;
 
 		$this->fill($customer->only([
-			'id',
 			'image',
 			'name',
 			'family',
@@ -81,30 +80,52 @@ class CustomerForm extends Form
 		$this->months = array_replace(array_fill(1, 12, null), $payments);
 	}
 
-	public function save()
+	public function update()
 	{
 		$data = $this->validate();
+		$data += $this->validate(['national_code' => 'nullable|unique:customers,national_code,' . $this->customer->id,]);
 
-		if ($this->image != $this->customer->image) {
-			$customer = Customer::where('id', $data['id'])->first();
-
-			if ($customer && $customer->image) {
-				Storage::disk('public')->delete($customer->image);
+		if ($this->delete_image) {
+			if ($this->customer->image) {
+				Storage::disk('public')->delete($this->customer->image);
 			}
+			$data['image'] = null;
+		}
 
+		if ($this->image != $this->customer->image && !$this->delete_image) {
+			if ($this->customer->image) {
+				Storage::disk('public')->delete($this->customer->image);
+			}
 			$data['image'] = $this->image->store('', 'public');
 		}
 
-		$customer = Customer::updateOrCreate(
-			['id' => $data['id']],
-			$data
-		);
+		$this->customer->update($data);
 
 		foreach ($this->months as $month => $amount) {
 			if ($amount !== null) {
-				$customer->payments()->updateOrCreate(
+				$this->customer->payments()->updateOrCreate(
 					['month' => $month, 'year' => now()->year],
 					['paid' => $amount]
+				);
+			}
+		}
+	}
+
+	public function store()
+	{
+		$data = $this->validate();
+		$data += $this->validate(['national_code' => 'nullable|unique:customers,national_code']);
+
+		if ($this->image) {
+			$data['image'] = $this->image->store('', 'public');
+		}
+
+		$customer = Customer::query()->create($data);
+
+		foreach ($this->months as $month => $amount) {
+			if ($amount !== null) {
+				$customer->payments()->create(
+					['month' => $month, 'year' => now()->year, 'paid' => $amount]
 				);
 			}
 		}

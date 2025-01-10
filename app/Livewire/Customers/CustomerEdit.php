@@ -20,7 +20,7 @@ class CustomerEdit extends Component
 
 	public function save()
 	{
-		$this->form->save();
+		$this->form->update();
 		$this->redirect(route('home'));
 	}
 
