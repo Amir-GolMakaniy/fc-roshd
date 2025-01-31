@@ -2,17 +2,17 @@
 
 namespace App\Livewire\Forms;
 
-use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 use Livewire\WithFileUploads;
 
-class CustomerForm extends Form
+class UserForm extends Form
 {
 	use WithFileUploads;
 
-	public ?Customer $customer;
+	public ?User $user;
 
 	#[Validate('required')]
 	public $name = null;
@@ -67,11 +67,11 @@ class CustomerForm extends Form
 		$this->months = array_fill(1, 12, null);
 	}
 
-	public function set(Customer $customer)
+	public function set(User $user)
 	{
-		$this->customer = $customer;
+		$this->user = $user;
 
-		$this->fill($customer->only([
+		$this->fill($user->only([
 			'image',
 			'placed',
 			'name',
@@ -86,7 +86,7 @@ class CustomerForm extends Form
 			'insurance',
 		]));
 
-		$payments = $customer->payments->pluck('paid', 'month')->toArray();
+		$payments = $user->payments->pluck('paid', 'month')->toArray();
 		$this->months = array_replace(array_fill(1, 12, null), $payments);
 	}
 
@@ -95,38 +95,38 @@ class CustomerForm extends Form
 		$data = $this->validate();
 
 		if ($this->delete_placed) {
-			if ($this->customer->placed) {
-				Storage::disk('public')->delete($this->customer->placed);
+			if ($this->user->placed) {
+				Storage::disk('public')->delete($this->user->placed);
 			}
 			$data['placed'] = null;
 		}
 
-		if ($this->placed != $this->customer->placed && !$this->delete_placed) {
-			if ($this->customer->placed) {
-				Storage::disk('public')->delete($this->customer->placed);
+		if ($this->placed != $this->user->placed && !$this->delete_placed) {
+			if ($this->user->placed) {
+				Storage::disk('public')->delete($this->user->placed);
 			}
 			$data['placed'] = $this->placed->store('', 'public');
 		}
 
 		if ($this->delete_image) {
-			if ($this->customer->image) {
-				Storage::disk('public')->delete($this->customer->image);
+			if ($this->user->image) {
+				Storage::disk('public')->delete($this->user->image);
 			}
 			$data['image'] = null;
 		}
 
-		if ($this->image != $this->customer->image && !$this->delete_image) {
-			if ($this->customer->image) {
-				Storage::disk('public')->delete($this->customer->image);
+		if ($this->image != $this->user->image && !$this->delete_image) {
+			if ($this->user->image) {
+				Storage::disk('public')->delete($this->user->image);
 			}
 			$data['image'] = $this->image->store('', 'public');
 		}
 
-		$this->customer->update($data);
+		$this->user->update($data);
 
 		foreach ($this->months as $month => $amount) {
 			if ($amount !== null) {
-				$this->customer->payments()->updateOrCreate(
+				$this->user->payments()->updateOrCreate(
 					['month' => $month, 'year' => now()->year],
 					['paid' => $amount]
 				);
@@ -146,11 +146,11 @@ class CustomerForm extends Form
 			$data['image'] = $this->image->store('', 'public');
 		}
 
-		$customer = Customer::query()->create($data);
+		$user = User::query()->create($data);
 
 		foreach ($this->months as $month => $amount) {
 			if ($amount !== null) {
-				$customer->payments()->create(
+				$user->payments()->create(
 					['month' => $month, 'year' => now()->year, 'paid' => $amount]
 				);
 			}

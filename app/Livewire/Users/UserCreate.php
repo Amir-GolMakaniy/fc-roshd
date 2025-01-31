@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Livewire\Customers;
+namespace App\Livewire\Users;
 
-use App\Livewire\Forms\CustomerForm;
+use App\Livewire\Forms\UserForm;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class CustomerCreate extends Component
+class UserCreate extends Component
 {
 	use WithFileUploads;
 
-	public CustomerForm $form;
+	public UserForm $form;
 
 	public function save()
 	{
@@ -20,6 +20,6 @@ class CustomerCreate extends Component
 
 	public function render()
 	{
-		return view('livewire.customers.customer-create');
+		return view('livewire.users.user-create');
 	}
 }
