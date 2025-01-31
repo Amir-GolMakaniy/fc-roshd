@@ -95,24 +95,31 @@
                 <!-- مشخصات لباس و کفش -->
                 <div class="row g-3 mt-2">
                     <!-- لباس یک -->
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <x-label name="form.one_clothes" value="لباس یک" class="form-label"/>
                         <x-number name="form.one_clothes" class="form-control"/>
                         <x-error name="form.one_clothes" class="text-danger"/>
                     </div>
 
                     <!-- لباس دو -->
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <x-label name="form.two_clothes" value="لباس دو" class="form-label"/>
                         <x-number name="form.two_clothes" class="form-control"/>
                         <x-error name="form.two_clothes" class="text-danger"/>
                     </div>
 
                     <!-- کفش -->
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <x-label name="form.shoes" value="کفش" class="form-label"/>
                         <x-number name="form.shoes" class="form-control"/>
                         <x-error name="form.shoes" class="text-danger"/>
+                    </div>
+
+                    <!-- شماره -->
+                    <div class="col-md-3">
+                        <x-label name="form.number" value="شماره" class="form-label"/>
+                        <x-number name="form.number" class="form-control"/>
+                        <x-error name="form.number" class="text-danger"/>
                     </div>
                 </div>
 

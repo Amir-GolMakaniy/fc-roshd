@@ -42,6 +42,9 @@ class CustomerForm extends Form
 	public $shoes = null;
 
 	#[Validate('nullable')]
+	public $number = null;
+
+	#[Validate('nullable')]
 	public $insurance = null;
 
 	#[Validate('nullable')]

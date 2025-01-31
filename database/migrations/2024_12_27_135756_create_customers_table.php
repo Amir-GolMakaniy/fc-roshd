@@ -22,6 +22,7 @@ return new class extends Migration
 			$table->string('one_clothes')->nullable();
 			$table->string('two_clothes')->nullable();
 			$table->string('shoes')->nullable();
+			$table->string('number')->nullable();
 			$table->string('insurance')->nullable();
 			$table->string('image')->nullable();
 			$table->string('placed')->nullable();
