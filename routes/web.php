@@ -5,8 +5,9 @@ use App\Livewire\Users\UserEdit;
 use App\Livewire\Users\Users;
 use Illuminate\Support\Facades\Route;
 
-require __DIR__ . '/auth.php';
 
+//auth()->loginUsingId(1);
+//dd(auth()->user());
 Route::get('/', Users::class)->middleware('auth')->name('home');
 
 Route::get('/create', UserCreate::class)->middleware('auth')
