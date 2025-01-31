@@ -1,12 +1,16 @@
 <?php
 
-use App\Livewire\Customers\CustomerCreate;
-use App\Livewire\Customers\CustomerEdit;
-use App\Livewire\Customers\Customers;
+use App\Livewire\Users\UserCreate;
+use App\Livewire\Users\UserEdit;
+use App\Livewire\Users\Users;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', Customers::class)->middleware('auth')->name('home');
-Route::get('/create', CustomerCreate::class)->middleware('auth')->name('customer-create');
-Route::get('/{customer}/edit', CustomerEdit::class)->middleware('auth')->name('customer-edit');
-
 require __DIR__ . '/auth.php';
+
+Route::get('/', Users::class)->middleware('auth')->name('home');
+
+Route::get('/create', UserCreate::class)->middleware('auth')
+	->name('user-create');
+
+Route::get('/{user}/edit', UserEdit::class)->middleware('auth')
+	->name('user-edit');

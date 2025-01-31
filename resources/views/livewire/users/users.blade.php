@@ -13,12 +13,12 @@
         <!-- تعداد کاربران و جستجو -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="text-white">تعداد کاربران:
-                <span class="badge bg-primary">{{ App\Models\Customer::count() }}</span>
+                <span class="badge bg-primary">{{ App\Models\User::count() }}</span>
             </h5>
             <div class="mb-4 d-flex justify-content-center w-50">
                 <input type="text" wire:model.live="search" class="form-control" placeholder="جستجو">
             </div>
-            <a href="{{ route('customer-create') }}" class="btn btn-success">
+            <a href="{{ route('user-create') }}" class="btn btn-success">
                 افزودن کاربر جدید
             </a>
         </div>
@@ -45,33 +45,33 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($customers as $customer)
+                @foreach($users as $user)
                     <tr>
                         <td data-label="عکس">
-                            <img src="{{ asset('images/'.$customer->image) }}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
+                            <img src="{{ asset('images/'.$user->image) }}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
                         </td>
                         <td data-label="عکس">
-                            <img src="{{ asset('images/'.$customer->placed) }}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
+                            <img src="{{ asset('images/'.$user->placed) }}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
                         </td>
-                        <td data-label="نام">{{ $customer->name }}</td>
-                        <td data-label="نام خانوادگی">{{ $customer->family }}</td>
-                        <td data-label="لباس یک">{{ $customer->one_clothes }}</td>
-                        <td data-label="لباس دو">{{ $customer->two_clothes }}</td>
-                        <td data-label="کفش">{{ $customer->shoes }}</td>
-                        <td data-label="شماره">{{ $customer->number }}</td>
-                        <td data-label="بیمه">{{ $customer->insurance }}</td>
+                        <td data-label="نام">{{ $user->name }}</td>
+                        <td data-label="نام خانوادگی">{{ $user->family }}</td>
+                        <td data-label="لباس یک">{{ $user->one_clothes }}</td>
+                        <td data-label="لباس دو">{{ $user->two_clothes }}</td>
+                        <td data-label="کفش">{{ $user->shoes }}</td>
+                        <td data-label="شماره">{{ $user->number }}</td>
+                        <td data-label="بیمه">{{ $user->insurance }}</td>
                         @for($month = 1; $month <= 12; $month++)
                             <td data-label="ماه {{ $month }}">
-                                {{ $customer->payments->firstWhere('month', $month)?->paid ?? '' }}
+                                {{ $user->payments->firstWhere('month', $month)?->paid ?? '' }}
                             </td>
                         @endfor
                         <td data-label="ویرایش">
-                            <a href="{{ route('customer-edit', $customer->id) }}" class="btn btn-warning btn-sm">
+                            <a href="{{ route('user-edit', $user->id) }}" class="btn btn-warning btn-sm">
                                 ویرایش
                             </a>
                         </td>
                         <td data-label="حذف">
-                            <button wire:click="delete({{ $customer->id }})" class="btn btn-danger btn-sm">
+                            <button wire:click="delete({{ $user->id }})" class="btn btn-danger btn-sm">
                                 حذف
                             </button>
                         </td>
@@ -83,7 +83,7 @@
 
         <!-- pagination -->
         <div class="d-flex justify-content-center mt-4">
-            {{ $customers->links() }}
+            {{ $users->links() }}
         </div>
     </div>
 </div>
