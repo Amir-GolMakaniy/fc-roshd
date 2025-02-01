@@ -48,10 +48,12 @@
                 @foreach($users as $user)
                     <tr>
                         <td data-label="عکس">
-                            <img src="{{ asset('images/'.$user->image) }}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
+                            <img src="{{ asset('images/'.$user->image) }}" alt="" class="img-thumbnail"
+                                 style="width: 80px; height: auto;">
                         </td>
                         <td data-label="عکس">
-                            <img src="{{ asset('images/'.$user->placed) }}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
+                            <img src="{{ asset('images/'.$user->placed) }}" alt="" class="img-thumbnail"
+                                 style="width: 80px; height: auto;">
                         </td>
                         <td data-label="نام">{{ $user->name }}</td>
                         <td data-label="نام خانوادگی">{{ $user->family }}</td>
@@ -86,4 +88,5 @@
             {{ $users->links() }}
         </div>
     </div>
+</div>
 </div>
