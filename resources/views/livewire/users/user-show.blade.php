@@ -197,14 +197,14 @@
                                     <tr>
                                         <td class="text-dark">تاریخ تولد</td>
                                         <td>
-                                            <x-text name="form.birthday" class="form-control"/>
+                                            <x-date-birthday name="form.birthday" class="form-control birthday"/>
                                             <x-error name="form.birthday" class="text-danger"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-dark">تاریخ بیمه</td>
                                         <td>
-                                            <x-text name="form.insurance" class="form-control"/>
+                                            <x-date-insurance name="form.insurance" class="form-control insurance"/>
                                             <x-error name="form.insurance" class="text-danger"/>
                                         </td>
                                     </tr>

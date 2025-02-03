@@ -239,7 +239,6 @@ h2, h5 {
 }
 /* استایل برای فرم‌ها */
 .form-wrapper {
-    background-color: #2d2d2d; /* پس‌زمینه تیره مشابه رنگ اصلی */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
@@ -248,8 +247,6 @@ h2, h5 {
 
 /* استایل برای فرم‌ها و فیلدهای ورودی */
 .form-control {
-    background-color: #2d2d2d; /* پس‌زمینه فرم‌ها هم همین رنگ اصلی */
-    color: #fff;
     border: 2px solid #444;
     border-radius: 8px;
     padding: 12px 15px;

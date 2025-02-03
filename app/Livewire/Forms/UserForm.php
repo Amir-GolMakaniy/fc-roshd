@@ -14,10 +14,10 @@ class UserForm extends Form
 
 	public ?User $user;
 
-	#[Validate('required')]
+	#[Validate('required|string')]
 	public $name = null;
 
-	#[Validate('required')]
+	#[Validate('required|string')]
 	public $family = null;
 
 	#[Validate('nullable')]
