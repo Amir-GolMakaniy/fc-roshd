@@ -18,5 +18,9 @@ class DatabaseSeeder extends Seeder
 			'name' => 'roshd',
 			'family' => 'navid102',
 		]);
+		User::factory()->create([
+			'name' => 'حمیدرضا',
+			'family' => 'افروزی',
+		]);
 	}
 }

@@ -230,7 +230,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="text-dark">شماره</td>
+                                        <td class="text-dark">شماره پیرهن</td>
                                         <td>
                                             <x-text name="form.number" class="form-control"/>
                                             <x-error name="form.number" class="text-danger"/>

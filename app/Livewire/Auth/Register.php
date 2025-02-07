@@ -26,7 +26,7 @@ class Register extends Component
 		// لاگین خودکار کاربر بعد از ثبت‌نام
 		Auth::login($user);
 
-		return redirect()->route('user-show',auth()->id()); // تغییر مسیر بعد از ثبت‌نام
+		return redirect()->route('user-show',auth()->id()); // تغییر مسیر بعد از ثبت‌ نام
 	}
 
 	public function render()

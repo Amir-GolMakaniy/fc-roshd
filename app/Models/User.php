@@ -28,6 +28,7 @@ class User extends Authenticatable
 		'one_clothes',
 		'two_clothes',
 		'shoes',
+		'number',
 		'insurance',
 		'image',
 		'placed',

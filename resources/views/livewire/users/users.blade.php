@@ -35,7 +35,7 @@
                     <th>لباس یک</th>
                     <th>لباس دو</th>
                     <th>کفش</th>
-                    <th>شماره</th>
+                    <th>شماره پیرهن</th>
                     <th>بیمه</th>
                     @for($month = 1; $month <= 12; $month++)
                         <th>ماه {{ $month }}</th>
@@ -60,7 +60,7 @@
                         <td data-label="لباس یک">{{ $user->one_clothes }}</td>
                         <td data-label="لباس دو">{{ $user->two_clothes }}</td>
                         <td data-label="کفش">{{ $user->shoes }}</td>
-                        <td data-label="شماره">{{ $user->number }}</td>
+                        <td data-label="شماره پیرهن">{{ $user->number }}</td>
                         <td data-label="بیمه">{{ $user->insurance }}</td>
                         @for($month = 1; $month <= 12; $month++)
                             <td data-label="ماه {{ $month }}">

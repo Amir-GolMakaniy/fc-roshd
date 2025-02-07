@@ -99,9 +99,9 @@
                         <x-error name="form.shoes" class="text-danger"/>
                     </div>
 
-                    <!-- شماره -->
+                    <!-- شماره پیرهن -->
                     <div class="col-md-3">
-                        <x-label name="form.number" value="شماره" class="form-label"/>
+                        <x-label name="form.number" value="شماره پیرهن" class="form-label"/>
                         <x-number name="form.number" class="form-control"/>
                         <x-error name="form.number" class="text-danger"/>
                     </div>
