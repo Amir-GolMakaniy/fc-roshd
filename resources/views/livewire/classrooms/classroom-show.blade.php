@@ -13,19 +13,11 @@
         <!-- تعداد کاربران و جستجو -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="text-white">تعداد کاربران:
-                <span class="badge bg-primary">{{ App\Models\User::query()->count() }}</span>
+                <span class="badge bg-primary">{{ $users->count() }}</span>
             </h5>
-            <h6 class="text-white">تعداد کاربران پرداخت نکرده:
-                <span class="badge bg-primary">{{ App\Models\User::query()->leftJoin('payments', 'users.id', '=', 'payments.user_id')->whereNull('payments.id')->select('users.*')->count() }}</span>
-                <input type="checkbox" wire:click="filterToggle" @php $filter ? "checked" : "" @endphp name="filter"
-                       id="filter">
-            </h6>
             <div class="mb-4 d-flex justify-content-center w-50">
                 <input type="text" wire:model.live="search" class="form-control" placeholder="جستجو">
             </div>
-            <a href="{{ route('user-create') }}" class="btn btn-success mx-2">
-                افزودن کاربر جدید
-            </a>
             <a href="{{ route('classrooms') }}" class="btn btn-success">
                 کلاس ها
             </a>
@@ -45,7 +37,6 @@
                     <th>کفش</th>
                     <th>شماره پیرهن</th>
                     <th>بیمه</th>
-                    <th>کلاس</th>
                     @for($month = 1; $month <= 12; $month++)
                         <th>ماه {{ $month }}</th>
                     @endfor
@@ -71,8 +62,7 @@
                         <td data-label="کفش">{{ $user->shoes }}</td>
                         <td data-label="شماره پیرهن">{{ $user->number }}</td>
                         <td data-label="بیمه">{{ $user->insurance }}</td>
-                        <td data-label="کلاس">{{ optional($user->classroom)->name ?? 'بدون کلاس' }}</td>
-                    @for($month = 1; $month <= 12; $month++)
+                        @for($month = 1; $month <= 12; $month++)
                             <td data-label="ماه {{ $month }}">
                                 {{ $user->payments->firstWhere('month', $month)?->paid ?? '' }}
                             </td>

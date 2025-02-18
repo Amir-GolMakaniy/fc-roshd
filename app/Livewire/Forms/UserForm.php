@@ -48,6 +48,9 @@ class UserForm extends Form
 	public $insurance = null;
 
 	#[Validate('nullable')]
+	public $classroom_id = null;
+
+	#[Validate('nullable')]
 	public $image = null;
 
 	#[Validate('nullable')]
@@ -85,6 +88,7 @@ class UserForm extends Form
 			'shoes',
 			'number',
 			'insurance',
+			'classroom_id',
 		]));
 
 		$payments = $user->payments->pluck('paid', 'month')->toArray();

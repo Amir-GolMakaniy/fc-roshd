@@ -236,6 +236,13 @@
                                             <x-error name="form.number" class="text-danger"/>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td class="text-dark">کلاس</td>
+                                        <td>
+                                            <x-text name="form.classroom_id" class="form-control"/>
+                                            <x-error name="form.classroom_id" class="text-danger"/>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                                 <button type="submit" class="btn btn-success">

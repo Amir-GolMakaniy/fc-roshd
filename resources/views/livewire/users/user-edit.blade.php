@@ -121,7 +121,20 @@
                         <x-number name="form.number" class="form-control"/>
                         <x-error name="form.number" class="text-danger"/>
                     </div>
+
+                    <!-- کلاس -->
+                    <div class="col-md-3">
+                        <x-label name="form.classroom_id" value="کلاس" class="form-label"/>
+                        <select name="form.classroom_id" id="form.classroom_id" wire:model.defer="form.classroom_id"
+                                class="form-control">
+                            @foreach(App\Models\Classroom::query()->orderByDesc('id')->get() as $classroom)
+                                <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                            @endforeach
+                        </select>
+                        <x-error name="form.classroom_id" class="text-danger"/>
+                    </div>
                 </div>
+
 
                 <!-- شهریه ماه‌ها -->
                 <div class="mt-3">

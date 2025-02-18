@@ -95,7 +95,7 @@ h2, h5 {
 }
 
 .table-container th, .table-container td {
-    padding: 12px;
+    /*padding: 12px;*/
     border: 1px solid #555;
 }
 
@@ -121,7 +121,8 @@ h2, h5 {
 /* استایل برای ریسپانسیو کردن جدول */
 @media (max-width: 768px) {
     .table-container table {
-        display: block;
+        width: 100%;
+        /*display: block;*/
     }
 
     .table-container thead {
@@ -165,14 +166,14 @@ h2, h5 {
     font-weight: bold;
 }
  .card {
-     background-color: #fff;
+     background: linear-gradient(to right, #3b3b3b, #2d2d2d); /* رنگ‌های تیره برای فاز ورزشی */
      border-radius: 10px;
      border: 1px solid #ddd;
  }
 
 .form-label {
     font-weight: 600;
-    color: #333;
+    color: #f1f1f1;
 }
 
 .form-control {
@@ -229,7 +230,7 @@ h2, h5 {
 .mt-3 h6 {
     font-size: 18px;
     font-weight: bold;
-    color: #333;
+    color: #f1f1f1;
 }
 
 /* استایل برای افزودن خطای مربوط به فیلدها */

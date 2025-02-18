@@ -86,24 +86,35 @@
                     </div>
 
                     <!-- لباس دو -->
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <x-label name="form.two_clothes" value="لباس دو" class="form-label"/>
                         <x-number name="form.two_clothes" class="form-control"/>
                         <x-error name="form.two_clothes" class="text-danger"/>
                     </div>
 
                     <!-- کفش -->
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <x-label name="form.shoes" value="کفش" class="form-label"/>
                         <x-number name="form.shoes" class="form-control"/>
                         <x-error name="form.shoes" class="text-danger"/>
                     </div>
 
                     <!-- شماره پیرهن -->
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <x-label name="form.number" value="شماره پیرهن" class="form-label"/>
                         <x-number name="form.number" class="form-control"/>
                         <x-error name="form.number" class="text-danger"/>
+                    </div>
+
+                    <div class="col-md-3">
+                        <x-label name="form.classroom_id" value="کلاس" class="form-label"/>
+                        <select name="form.classroom_id" id="form.classroom_id" wire:model.defer="form.classroom_id"
+                                class="form-control">
+                            @foreach(App\Models\Classroom::query()->orderByDesc('id')->get() as $classroom)
+                                <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                            @endforeach
+                        </select>
+                        <x-error name="form.classroom_id" class="text-danger"/>
                     </div>
                 </div>
 

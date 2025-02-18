@@ -30,6 +30,7 @@ class User extends Authenticatable
 		'shoes',
 		'number',
 		'insurance',
+		'classroom_id',
 		'image',
 		'placed',
     ];
@@ -65,5 +66,10 @@ class User extends Authenticatable
 	public function payments()
 	{
 		return $this->hasMany(Payment::class);
+	}
+
+	public function classroom()
+	{
+		return $this->belongsTo(Classroom::class);
 	}
 }

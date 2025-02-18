@@ -21,19 +21,20 @@ class Users extends Component
 		$this->filter = !$this->filter;
 	}
 
-	public function delete(User $customer)
+	public function delete(User $user)
 	{
-		if ($customer->image) {
-			Storage::disk('public')->delete($customer->image);
+		if ($user->image) {
+			Storage::disk('public')->delete($user->image);
 		}
 
-		if ($customer->placed) {
-			Storage::disk('public')->delete($customer->placed);
+		if ($user->placed) {
+			Storage::disk('public')->delete($user->placed);
 		}
 
-		$customer->delete();
+		$user->delete();
 
 		$this->reset();
+
 		$this->render();
 	}
 
