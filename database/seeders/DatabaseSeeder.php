@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
 			'name' => 'حمیدرضا',
 			'family' => 'افروزی',
 		]);
+		USer::factory(10)->create();
 	}
 }

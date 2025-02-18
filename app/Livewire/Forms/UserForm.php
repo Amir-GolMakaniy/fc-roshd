@@ -83,6 +83,7 @@ class UserForm extends Form
 			'one_clothes',
 			'two_clothes',
 			'shoes',
+			'number',
 			'insurance',
 		]));
 
