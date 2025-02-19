@@ -36,5 +36,4 @@ Route::middleware('auth')->group(function () {
 	Route::get('/{user}', UserShow::class)->name('user-show');
 
 	Route::get('/{user}/edit', UserEdit::class)->name('user-edit');
-
 });

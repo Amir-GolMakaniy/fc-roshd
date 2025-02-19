@@ -1,6 +1,6 @@
 <div>
     <div style="background: url('{{ asset('images/bg.jpg') }}') no-repeat center center fixed; background-size: cover; color: white;">
-        <x-slot:title>اطلاعات مشتری</x-slot>
+        <x-slot:title>اطلاعات بازیکن</x-slot>
         <div class="container my-5">
             <!-- تصویر لوگو -->
             <div class="text-center mb-4">
@@ -19,12 +19,12 @@
             </h2>--}}
 
             @if(!$isEditing)
-                <!-- عکس مشتری و عکس قرارداد کنار هم -->
+                <!-- عکس بازیکن و عکس قرارداد کنار هم -->
                 <div class="row mb-4 text-center">
                     <div class="col-12 col-md-6 mb-3">
                         <div class="card border-light shadow-sm p-3 bg-secondary">
-                            <h5 class="text-white">عکس مشتری</h5>
-                            <img src="{{ asset('images/'.$user->image) }}" alt="عکس مشتری"
+                            <h5 class="text-white">عکس بازیکن</h5>
+                            <img src="{{ asset('images/'.$user->image) }}" alt="عکس بازیکن"
                                  class="img-fluid mx-auto d-block img-thumbnail" style="max-width: 250px;">
                         </div>
                     </div>
@@ -37,12 +37,12 @@
                     </div>
                 </div>
 
-                <!-- ماه‌ها و پرداخت‌ها + اطلاعات مشتری کنار هم -->
+                <!-- ماه‌ها و پرداخت‌ها + اطلاعات بازیکن کنار هم -->
                 <div class="row mt-4">
-                    <!-- مشخصات مشتری -->
+                    <!-- مشخصات بازیکن -->
                     <div class="col-12 col-md-6">
                         <div class="table-responsive">
-                            <h4 class="text-white text-center">مشخصات مشتری:</h4>
+                            <h4 class="text-white text-center">مشخصات بازیکن:</h4>
                             <table class="table table-bordered table-striped text-center">
                                 <thead class="bg-dark text-white">
                                 <tr>
@@ -92,7 +92,7 @@
                                     <td class="text-muted">{{ $user->shoes }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-dark">شماره</td>
+                                    <td class="text-dark">شماره پیراهن</td>
                                     <td class="text-muted">{{ $user->number }}</td>
                                 </tr>
                                 </tbody>
@@ -127,11 +127,11 @@
                 </div>
             @else
                 <form wire:submit.prevent="save">
-                    <!-- عکس مشتری و عکس قرارداد کنار هم -->
+                    <!-- عکس بازیکن و عکس قرارداد کنار هم -->
                     <div class="row mb-4 text-center">
                         <div class="col-12 col-md-6 mb-3">
                             <div class="card border-light shadow-sm p-3 bg-secondary">
-                                <h5 class="text-white">عکس مشتری</h5>
+                                <h5 class="text-white">عکس بازیکن</h5>
                                 <x-file name="form.image" class="form-control"/>
                                 <x-error name="form.image" class="text-danger"/>
                             </div>
@@ -145,12 +145,12 @@
                         </div>
                     </div>
 
-                    <!-- ماه‌ها و پرداخت‌ها + اطلاعات مشتری کنار هم -->
+                    <!-- ماه‌ها و پرداخت‌ها + اطلاعات بازیکن کنار هم -->
                     <div class="row mt-4">
-                        <!-- مشخصات مشتری -->
+                        <!-- مشخصات بازیکن -->
                         <div class="col-12 col-md-6">
                             <div class="table-responsive">
-                                <h4 class="text-white text-center">مشخصات مشتری:</h4>
+                                <h4 class="text-white text-center">مشخصات بازیکن:</h4>
                                 <table class="table table-bordered table-striped text-center">
                                     <thead class="bg-dark text-white">
                                     <tr>
@@ -230,7 +230,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="text-dark">شماره پیرهن</td>
+                                        <td class="text-dark">شماره پیراهن</td>
                                         <td>
                                             <x-text name="form.number" class="form-control"/>
                                             <x-error name="form.number" class="text-danger"/>
