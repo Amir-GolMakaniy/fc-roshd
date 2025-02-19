@@ -26,7 +26,7 @@ return new class extends Migration
 			$table->string('insurance')->nullable();
 			$table->string('image')->nullable();
 			$table->string('placed')->nullable();
-			$table->foreignId('classroom_id')->nullable()->constrained();
+			$table->foreignId('classroom_id')->nullable()->constrained()->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

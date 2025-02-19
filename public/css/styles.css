@@ -97,6 +97,7 @@ h2, h5 {
 .table-container th, .table-container td {
     /*padding: 12px;*/
     border: 1px solid #555;
+    cursor: default;
 }
 
 .table-container th {
@@ -165,11 +166,12 @@ h2, h5 {
     border-radius: 20px;
     font-weight: bold;
 }
- .card {
-     background: linear-gradient(to right, #3b3b3b, #2d2d2d); /* رنگ‌های تیره برای فاز ورزشی */
-     border-radius: 10px;
-     border: 1px solid #ddd;
- }
+
+.card {
+    background: linear-gradient(to right, #3b3b3b, #2d2d2d); /* رنگ‌های تیره برای فاز ورزشی */
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
 
 .form-label {
     font-weight: 600;
@@ -238,6 +240,7 @@ h2, h5 {
     font-size: 0.875rem;
     color: #e74c3c;
 }
+
 /* استایل برای فرم‌ها */
 .form-wrapper {
     padding: 20px;
@@ -297,4 +300,59 @@ h2, h5 {
     font-size: 0.875rem;
     color: #e74c3c;
     margin-top: 5px;
+}
+
+/* استایل کلی برای چک‌باکس */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-check-label {
+    font-weight: 600;
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* استایل خود چک‌باکس */
+.form-check-input {
+    appearance: none; /* حذف استایل پیش‌فرض */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #888;
+    border-radius: 5px;
+    background-color: #2b2b2b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* استایل برای زمانی که موس روی چک‌باکس بره */
+.form-check-input:hover {
+    border-color: #28a745;
+}
+
+/* استایل زمانی که چک‌باکس تیک خورده */
+.form-check-input:checked {
+    background-color: #28a745;
+    border-color: #28a745;
+    position: relative;
+}
+
+/* تیک داخل چک‌باکس */
+.form-check-input:checked::before {
+    content: "✔";
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* استایل برای چک‌باکس غیرفعال */
+.form-check-input:disabled {
+    background-color: #555;
+    border-color: #777;
+    cursor: not-allowed;
 }

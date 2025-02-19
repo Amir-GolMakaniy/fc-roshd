@@ -37,6 +37,7 @@
                     <th>کفش</th>
                     <th>شماره پیرهن</th>
                     <th>بیمه</th>
+                    <th>حاضر</th>
                     @for($month = 1; $month <= 12; $month++)
                         <th>ماه {{ $month }}</th>
                     @endfor
@@ -62,6 +63,13 @@
                         <td data-label="کفش">{{ $user->shoes }}</td>
                         <td data-label="شماره پیرهن">{{ $user->number }}</td>
                         <td data-label="بیمه">{{ $user->insurance }}</td>
+                        {{--                        <td data-label="حاضر">{{ optional($user->presence)->date ?? 'غایب' }}</td>--}}
+                        <td data-label="حاضر">
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   wire:click="presenceToggle({{ $user->id }})"
+                                   @if($user->presence()->exists()) checked @endif>
+                        </td>
                         @for($month = 1; $month <= 12; $month++)
                             <td data-label="ماه {{ $month }}">
                                 {{ $user->payments->firstWhere('month', $month)?->paid ?? '' }}

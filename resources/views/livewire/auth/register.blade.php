@@ -1,4 +1,5 @@
 <div class="d-flex align-items-center justify-content-center min-vh-100 bg-dark">
+    <x-slot:title>ثبت نام</x-slot>
     <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%; background-color: #2c3e50; border-radius: 10px;">
         <div class="text-center mb-3">
             <h3 class="text-white">ثبت‌نام در باشگاه رشد</h3>

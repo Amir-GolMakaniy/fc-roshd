@@ -3,6 +3,7 @@
 namespace App\Livewire\Classrooms;
 
 use App\Models\Classroom;
+use App\Models\Presence;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -16,6 +17,19 @@ class ClassroomShow extends Component
 	public $search = '';
 
 	protected $paginationTheme = 'bootstrap';
+
+	public function presenceToggle($userId)
+	{
+		$presence = Presence::where('user_id', $userId)->first();
+
+		if ($presence) {
+			$presence->delete();
+		} else {
+			Presence::create([
+				'user_id' => $userId,
+			]);
+		}
+	}
 
 	public function delete(User $user)
 	{
