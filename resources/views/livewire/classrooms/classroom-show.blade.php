@@ -2,9 +2,13 @@
     <x-slot:title>{{ $classroom->name }}</x-slot>
 
     <div class="container my-5">
-        <div class="image-wrapper text-center mb-4">
-            <img src="{{ asset('images/THE-ROSHD.png') }}" alt="رشد" class="img-fluid"
-                 style="max-height: 120px;">
+        <h3 class="fw-bold text-white">{{ auth()->user()->name }}</h3>
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-danger ms-3">خروج</button>
+        </form>
+        <div class="image-wrapper">
+            <img src="{{ asset('images/THE-ROSHD.png') }}" alt="رشد">
         </div>
 
         <h2 class="text-center mb-4 text-primary">باشگاه فرهنگی ورزشی رشد شهرستان چناران</h2>

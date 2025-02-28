@@ -95,6 +95,7 @@
                         <x-label name="form.classroom_id" value="کلاس" class="form-label"/>
                         <select name="form.classroom_id" id="form.classroom_id" wire:model.defer="form.classroom_id"
                                 class="form-control">
+                                <option value="">بدون کلاس</option>
                             @foreach(App\Models\Classroom::query()->orderByDesc('id')->get() as $classroom)
                                 <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                             @endforeach
@@ -108,7 +109,8 @@
                     <div class="row g-2">
                         @foreach(range(1, 12) as $month)
                             <div class="col-6 col-md-4">
-                                <x-label name="form.month_fee_{{ $month }}" value="ماه {{ $month }}" class="form-label"/>
+                                <x-label name="form.month_fee_{{ $month }}" value="ماه {{ $month }}"
+                                         class="form-label"/>
                                 <x-number name="form.months.{{ $month }}" class="form-control"/>
                                 <x-error name="form.month_{{ $month }}" class="text-danger"/>
                             </div>

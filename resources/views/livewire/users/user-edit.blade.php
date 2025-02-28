@@ -107,6 +107,7 @@
                         <x-label name="form.classroom_id" value="کلاس" class="form-label"/>
                         <select name="form.classroom_id" id="form.classroom_id" wire:model.defer="form.classroom_id"
                                 class="form-control">
+                            <option value="">بدون کلاس</option>
                             @foreach(App\Models\Classroom::query()->orderByDesc('id')->get() as $classroom)
                                 <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                             @endforeach
