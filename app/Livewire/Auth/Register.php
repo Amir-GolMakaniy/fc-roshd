@@ -13,8 +13,8 @@ class Register extends Component
 	public function register()
 	{
 		$this->validate([
-			'name' => 'required|string|unique:users',
-			'family' => 'required|string|unique:users',
+			'name' => 'required|string',
+			'family' => 'required|string',
 		]);
 
 		// ایجاد کاربر جدید

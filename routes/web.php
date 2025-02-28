@@ -12,6 +12,11 @@ use App\Livewire\Users\Users;
 use App\Livewire\Users\UserShow;
 use Illuminate\Support\Facades\Route;
 
+Route::post('/logout', function () {
+	auth()->logout();
+	return redirect(route('login'));
+})->name('logout');
+
 Route::middleware('guest')->group(function () {
 	Route::get('/login', Login::class)->name('login');
 

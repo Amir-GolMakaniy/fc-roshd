@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
 			$table->foreignId('user_id')->constrained()->onDelete('cascade');
 			$table->string('paid');
-			$table->tinyInteger('month');
-			$table->smallInteger('year');
+			$table->date('date');
             $table->timestamps();
         });
     }

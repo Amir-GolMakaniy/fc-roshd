@@ -1,23 +1,26 @@
 <div>
     <x-slot:title>باشگاه رشد</x-slot>
+
     <div class="container my-5">
-        <!-- تصویر لوگو -->
-        <div class="image-wrapper text-center mb-4">
-            <img src="{{ asset('images/THE-ROSHD.png') }}" alt="رشد" class="img-fluid"
-                 style="max-height: 120px;">
+        <h3 class="fw-bold text-white">{{ auth()->user()->name }}</h3>
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-danger ms-3">خروج</button>
+        </form>
+        <div class="image-wrapper">
+            <img src="{{ asset('images/THE-ROSHD.png') }}" alt="رشد">
         </div>
 
-        <!-- عنوان -->
-        <h2 class="text-center mb-4 text-primary">باشگاه فرهنگی ورزشی رشد شهرستان چناران</h2>
+        <h2 class="text-center mb-4 text-primary fw-bold">باشگاه فرهنگی ورزشی رشد شهرستان چناران</h2>
 
-        <!-- تعداد کاربران و جستجو -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="text-white">تعداد کاربران:
                 <span class="badge bg-primary">{{ App\Models\User::query()->count() }}</span>
             </h5>
             <h6 class="text-white">تعداد کاربران پرداخت نکرده:
                 <span class="badge bg-primary">{{ App\Models\User::query()->leftJoin('payments', 'users.id', '=', 'payments.user_id')->whereNull('payments.id')->select('users.*')->count() }}</span>
-                <input type="checkbox" wire:click="filterToggle" @php $filter ? "checked" : "" @endphp name="filter"
+                <input type="checkbox" class="form-check-input" wire:click="filterToggle"
+                       @php $filter ? "checked" : "" @endphp name="filter"
                        id="filter">
             </h6>
             <div class="mb-4 d-flex justify-content-center w-50">
@@ -31,10 +34,9 @@
             </a>
         </div>
 
-        <!-- جدول کاربران -->
-        <div class="table-container table-responsive mt-4">
-            <table class="table table-bordered table-striped text-center">
-                <thead class="table-dark">
+        <div class="table-container table-responsive">
+            <table class="table table-bordered table-striped text-center table-dark">
+                <thead>
                 <tr>
                     <th>عکس</th>
                     <th>عکس قرار داد</th>
@@ -71,19 +73,19 @@
                         <td data-label="کفش">{{ $user->shoes }}</td>
                         <td data-label="شماره پیراهن">{{ $user->number }}</td>
                         <td data-label="بیمه">{{ $user->insurance }}</td>
-                        <td data-label="کلاس">{{ optional($user->classroom)->name ?? 'بدون کلاس' }}</td>
-                    @for($month = 1; $month <= 12; $month++)
+                        <td data-label="کلاس">{{ optional($user->classroom)->name }}</td>
+                        @for($month = 1; $month <= 12; $month++)
                             <td data-label="ماه {{ $month }}">
-                                {{ $user->payments->firstWhere('month', $month)?->paid ?? '' }}
+                                {{ optional($user->payments->where('year',date('Y'))->firstWhere('month', $month))->paid }}
                             </td>
                         @endfor
                         <td data-label="ویرایش">
-                            <a href="{{ route('user-edit', $user->id) }}" class="btn btn-warning btn-sm">
+                            <a href="{{ route('user-edit', $user->id) }}" class="btn btn-warning">
                                 ویرایش
                             </a>
                         </td>
                         <td data-label="حذف">
-                            <button wire:click="delete({{ $user->id }})" class="btn btn-danger btn-sm">
+                            <button wire:click="delete({{ $user->id }})" class="btn btn-danger ">
                                 حذف
                             </button>
                         </td>
@@ -93,10 +95,8 @@
             </table>
         </div>
 
-        <!-- pagination -->
         <div class="d-flex justify-content-center mt-4">
             {{ $users->links() }}
         </div>
     </div>
-</div>
 </div>

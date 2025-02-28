@@ -20,13 +20,17 @@ class ClassroomShow extends Component
 
 	public function presenceToggle($userId)
 	{
-		$presence = Presence::where('user_id', $userId)->first();
+		$presence = Presence::query()
+			->where('user_id', $userId)
+			->where('date', date('Y-m-d'))
+			->first();
 
 		if ($presence) {
 			$presence->delete();
 		} else {
-			Presence::create([
+			Presence::query()->create([
 				'user_id' => $userId,
+				'date' => date('Y-m-d'),
 			]);
 		}
 	}

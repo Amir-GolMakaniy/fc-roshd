@@ -1,16 +1,15 @@
 <div>
-    <x-slot:title>باشگاه رشد</x-slot>
+    <x-slot:title>{{ $classroom->name }}</x-slot>
+
     <div class="container my-5">
-        <!-- تصویر لوگو -->
         <div class="image-wrapper text-center mb-4">
             <img src="{{ asset('images/THE-ROSHD.png') }}" alt="رشد" class="img-fluid"
                  style="max-height: 120px;">
         </div>
 
-        <!-- عنوان -->
         <h2 class="text-center mb-4 text-primary">باشگاه فرهنگی ورزشی رشد شهرستان چناران</h2>
+        <h2 class="text-center mb-4 text-primary">کلاس {{ $classroom->name }}</h2>
 
-        <!-- تعداد کاربران و جستجو -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="text-white">تعداد کاربران:
                 <span class="badge bg-primary">{{ $users->count() }}</span>
@@ -23,9 +22,8 @@
             </a>
         </div>
 
-        <!-- جدول کاربران -->
         <div class="table-container table-responsive mt-4">
-            <table class="table table-bordered table-striped text-center">
+            <table class="table table-bordered table-striped text-center table-dark">
                 <thead class="table-dark">
                 <tr>
                     <th>عکس</th>
@@ -63,12 +61,11 @@
                         <td data-label="کفش">{{ $user->shoes }}</td>
                         <td data-label="شماره پیراهن">{{ $user->number }}</td>
                         <td data-label="بیمه">{{ $user->insurance }}</td>
-                        {{--                        <td data-label="حاضر">{{ optional($user->presence)->date ?? 'غایب' }}</td>--}}
                         <td data-label="حاضر">
                             <input type="checkbox"
                                    class="form-check-input"
                                    wire:click="presenceToggle({{ $user->id }})"
-                                   @if($user->presence()->exists()) checked @endif>
+                                   @if($user->presence()->where('date',date('Y-m-d'))->exists()) checked @endif>
                         </td>
                         @for($month = 1; $month <= 12; $month++)
                             <td data-label="ماه {{ $month }}">
@@ -76,12 +73,12 @@
                             </td>
                         @endfor
                         <td data-label="ویرایش">
-                            <a href="{{ route('user-edit', $user->id) }}" class="btn btn-warning btn-sm">
+                            <a href="{{ route('user-edit', $user->id) }}" class="btn btn-warning ">
                                 ویرایش
                             </a>
                         </td>
                         <td data-label="حذف">
-                            <button wire:click="delete({{ $user->id }})" class="btn btn-danger btn-sm">
+                            <button wire:click="delete({{ $user->id }})" class="btn btn-danger ">
                                 حذف
                             </button>
                         </td>
@@ -91,7 +88,6 @@
             </table>
         </div>
 
-        <!-- pagination -->
         <div class="d-flex justify-content-center mt-4">
             {{ $users->links() }}
         </div>

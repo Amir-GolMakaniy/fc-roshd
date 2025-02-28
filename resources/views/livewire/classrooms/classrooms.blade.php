@@ -1,12 +1,17 @@
 <div>
     <x-slot:title>باشگاه رشد</x-slot>
+
     <div class="container my-5">
-        <div class="image-wrapper text-center mb-4">
-            <img src="{{ asset('images/THE-ROSHD.png') }}" alt="رشد" class="img-fluid"
-                 style="max-height: 120px;">
+        <h3 class="fw-bold text-white">{{ auth()->user()->name }}</h3>
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit" class="btn btn-danger ms-3">خروج</button>
+        </form>
+        <div class="image-wrapper">
+            <img src="{{ asset('images/THE-ROSHD.png') }}" alt="رشد">
         </div>
 
-        <h2 class="text-center mb-4 text-primary">باشگاه فرهنگی ورزشی رشد شهرستان چناران</h2>
+        <h2 class="text-center mb-4 text-primary fw-bold">باشگاه فرهنگی ورزشی رشد شهرستان چناران</h2>
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="text-white">تعداد کلاس:
@@ -21,10 +26,13 @@
             <a href="{{ route('classroom-create') }}" class="btn btn-success mx-2">
                 افزودن کلاس جدید
             </a>
+            <a href="{{ route('home') }}" class="btn btn-success">
+                خانه
+            </a>
         </div>
 
         <div class="table-container table-responsive mt-4">
-            <table class="table table-bordered table-striped text-center">
+            <table class="table table-bordered table-striped text-center table-dark">
                 <thead class="table-dark">
                 <tr>
                     <th>نام</th>
@@ -38,16 +46,17 @@
                     <tr>
                         <td data-label="نام">{{ $classroom->name }}</td>
                         <td data-label="نمایش">
-                            <a href="{{ route('classroom-show', $classroom->id) }}" class="btn btn-info btn-sm">
+                            <a href="{{ route('classroom-show', $classroom->id) }}" class="btn btn-info ">
                                 نمایش
                             </a>
-                        </td><td data-label="ویرایش">
-                            <a href="{{ route('classroom-edit', $classroom->id) }}" class="btn btn-warning btn-sm">
+                        </td>
+                        <td data-label="ویرایش">
+                            <a href="{{ route('classroom-edit', $classroom->id) }}" class="btn btn-warning ">
                                 ویرایش
                             </a>
                         </td>
                         <td data-label="حذف">
-                            <button wire:click="delete({{ $classroom->id }})" class="btn btn-danger btn-sm">
+                            <button wire:click="delete({{ $classroom->id }})" class="btn btn-danger ">
                                 حذف
                             </button>
                         </td>
@@ -57,7 +66,6 @@
             </table>
         </div>
 
-        <!-- pagination -->
         <div class="d-flex justify-content-center mt-4">
             {{ $classrooms->links() }}
         </div>
