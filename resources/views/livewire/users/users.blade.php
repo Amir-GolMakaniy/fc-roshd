@@ -37,66 +37,112 @@
         <div class="table-container table-responsive">
             <table class="table table-bordered table-striped text-center table-dark">
                 <thead>
-                <tr>
-                    <th>عکس</th>
-                    <th>عکس قرار داد</th>
-                    <th>نام</th>
-                    <th>نام خانوادگی</th>
-                    <th>لباس یک</th>
-                    <th>لباس دو</th>
-                    <th>کفش</th>
-                    <th>شماره پیراهن</th>
-                    <th>بیمه</th>
-                    <th>کلاس</th>
-                    @for($month = 1; $month <= 12; $month++)
-                        <th>ماه {{ $month }}</th>
-                    @endfor
-                    <th>ویرایش</th>
-                    <th>حذف</th>
-                </tr>
+                @if($filter)
+                    <tr>
+                        <th>عکس</th>
+                        <th>عکس قرار داد</th>
+                        <th>نام</th>
+                        <th>نام خانوادگی</th>
+                        @for($month = 1; $month <= 12; $month++)
+                            <th>ماه {{ $month }}</th>
+                        @endfor
+                        <th>ویرایش</th>
+                        <th>حذف</th>
+                    </tr>
+                @else
+                    <tr>
+                        <th>عکس</th>
+                        <th>عکس قرار داد</th>
+                        <th>نام</th>
+                        <th>نام خانوادگی</th>
+                        <th>لباس یک</th>
+                        <th>لباس دو</th>
+                        <th>کفش</th>
+                        <th>شماره پیراهن</th>
+                        <th>بیمه</th>
+                        <th>کلاس</th>
+                        @for($month = 1; $month <= 12; $month++)
+                            <th>ماه {{ $month }}</th>
+                        @endfor
+                        <th>ویرایش</th>
+                        <th>حذف</th>
+                    </tr>
+                @endif
                 </thead>
                 <tbody>
                 @foreach($users as $user)
-                    <tr>
-                        <td data-label="عکس">
-                            <img src="{{ asset('images/'.$user->image) }}" alt="" class="img-thumbnail"
-                                 style="width: 80px; height: auto;">
-                        </td>
-                        <td data-label="عکس">
-                            <img src="{{ asset('images/'.$user->placed) }}" alt="" class="img-thumbnail"
-                                 style="width: 80px; height: auto;">
-                        </td>
-                        <td data-label="نام">{{ $user->name }}</td>
-                        <td data-label="نام خانوادگی">{{ $user->family }}</td>
-                        <td data-label="لباس یک">{{ $user->one_clothes }}</td>
-                        <td data-label="لباس دو">{{ $user->two_clothes }}</td>
-                        <td data-label="کفش">{{ $user->shoes }}</td>
-                        <td data-label="شماره پیراهن">{{ $user->number }}</td>
-                        <td data-label="بیمه">{{ $user->insurance }}</td>
-                        <td data-label="کلاس">{{ optional($user->classroom)->name }}</td>
-                        @for($month = 1; $month <= 12; $month++)
-                            <td data-label="ماه {{ $month }}">
-                                {{ optional($user->payments->where('year',date('Y'))->firstWhere('month', $month))->paid }}
+                    @if($filter)
+                        <tr>
+                            <td data-label="عکس">
+                                <img src="{{ asset('images/'.$user->image) }}" alt="" class="img-thumbnail"
+                                     style="width: 80px; height: auto;">
                             </td>
-                        @endfor
-                        <td data-label="ویرایش">
-                            <a href="{{ route('user-edit', $user->id) }}" class="btn btn-warning">
-                                ویرایش
-                            </a>
-                        </td>
-                        <td data-label="حذف">
-                            <button wire:click="delete({{ $user->id }})" class="btn btn-danger ">
-                                حذف
-                            </button>
-                        </td>
-                    </tr>
+                            <td data-label="عکس">
+                                <img src="{{ asset('images/'.$user->placed) }}" alt="" class="img-thumbnail"
+                                     style="width: 80px; height: auto;">
+                            </td>
+                            <td data-label="نام">{{ $user->name }}</td>
+                            <td data-label="نام خانوادگی">{{ $user->family }}</td>
+                            @for($month = 1; $month <= 12; $month++)
+                                <td data-label="ماه {{ $month }}">
+                                    {{ optional($user->payments->where('year',date('Y'))->firstWhere('month', $month))->paid }}
+                                </td>
+                            @endfor
+                            <td data-label="ویرایش">
+                                <a href="{{ route('user-edit', $user->id) }}" class="btn btn-warning">
+                                    ویرایش
+                                </a>
+                            </td>
+                            <td data-label="حذف">
+                                <button wire:click="delete({{ $user->id }})" class="btn btn-danger ">
+                                    حذف
+                                </button>
+                            </td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td data-label="عکس">
+                                <img src="{{ asset('images/'.$user->image) }}" alt="" class="img-thumbnail"
+                                     style="width: 80px; height: auto;">
+                            </td>
+                            <td data-label="عکس">
+                                <img src="{{ asset('images/'.$user->placed) }}" alt="" class="img-thumbnail"
+                                     style="width: 80px; height: auto;">
+                            </td>
+                            <td data-label="نام">{{ $user->name }}</td>
+                            <td data-label="نام خانوادگی">{{ $user->family }}</td>
+                            <td data-label="لباس یک">{{ $user->one_clothes }}</td>
+                            <td data-label="لباس دو">{{ $user->two_clothes }}</td>
+                            <td data-label="کفش">{{ $user->shoes }}</td>
+                            <td data-label="شماره پیراهن">{{ $user->number }}</td>
+                            <td data-label="بیمه">{{ $user->insurance }}</td>
+                            <td data-label="کلاس">{{ optional($user->classroom)->name }}</td>
+                            @for($month = 1; $month <= 12; $month++)
+                                <td data-label="ماه {{ $month }}">
+                                    {{ optional($user->payments->where('year',date('Y'))->firstWhere('month', $month))->paid }}
+                                </td>
+                            @endfor
+                            <td data-label="ویرایش">
+                                <a href="{{ route('user-edit', $user->id) }}" class="btn btn-warning">
+                                    ویرایش
+                                </a>
+                            </td>
+                            <td data-label="حذف">
+                                <button wire:click="delete({{ $user->id }})" class="btn btn-danger ">
+                                    حذف
+                                </button>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
         </div>
 
-        <div class="d-flex justify-content-center mt-4">
-            {{ $users->links() }}
-        </div>
+        @if(!$filter)
+            <div class="d-flex justify-content-center mt-4">
+                {{ $users->links() }}
+            </div>
+        @endif
     </div>
 </div>

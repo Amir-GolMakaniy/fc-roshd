@@ -53,7 +53,7 @@ class Users extends Component
 				->whereNull('payments.id')
 				->select('users.*')
 				->orderByDesc('id')
-				->paginate(10);
+				->get();
 		}
 
 		return view('livewire.users.users', compact('users'));
