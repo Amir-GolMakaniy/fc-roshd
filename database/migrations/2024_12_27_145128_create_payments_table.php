@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
 			$table->foreignId('user_id')->constrained()->onDelete('cascade');
 			$table->string('paid');
-			$table->date('date');
+			$table->string('year');
+			$table->string('month');
             $table->timestamps();
         });
     }

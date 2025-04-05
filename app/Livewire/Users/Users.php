@@ -3,6 +3,7 @@
 namespace App\Livewire\Users;
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -49,10 +50,14 @@ class Users extends Component
 
 		if ($this->filter){
 			$users = User::query()
-				->leftJoin('payments', 'users.id', '=', 'payments.user_id')
+				->leftJoin('payments', function ($join) {
+					$join->on('users.id', '=', 'payments.user_id')
+						->on('payments.year', '=', DB::raw(date('Y')))
+						->on('payments.month', '=', DB::raw(verta()->format('m')));
+				})
 				->whereNull('payments.id')
 				->select('users.*')
-				->orderByDesc('id')
+				->orderByDesc('users.id')
 				->get();
 		}
 
