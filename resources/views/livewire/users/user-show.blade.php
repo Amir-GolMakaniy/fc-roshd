@@ -237,7 +237,7 @@
                                         <tr>
                                             <td>ماه {{ $month }}</td>
                                             <td>
-                                                {{ $user->payments()->where('year', date('Y')->where('month', $month))->first() ?? 'پرداخت نشده' }}
+                                                {{ $user->payments->firstWhere('month', $month)?->paid ?? 'پرداخت نشده' }}
                                             </td>
                                         </tr>
                                     @endforeach
