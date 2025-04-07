@@ -97,6 +97,11 @@ class UserForm extends Form
 
 	public function update()
 	{
+		// قبل از validate
+		if ($this->classroom_id === '') {
+			$this->classroom_id = null;
+		}
+
 		$data = $this->validate();
 
 		if ($this->delete_placed) {
@@ -141,6 +146,10 @@ class UserForm extends Form
 
 	public function store()
 	{
+		if ($this->classroom_id === '') {
+			$this->classroom_id = null;
+		}
+
 		$data = $this->validate();
 
 		if ($this->placed) {
